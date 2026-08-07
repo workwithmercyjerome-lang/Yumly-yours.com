@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu — Yumly Yours</title>
+<meta name="description" content="Browse Yumly Yours' full menu — Nigerian, Continental, healthy, vegan, and chef specials, with meal plans and bulk options.">
+<link rel="icon" type="image/png" href="images/favicon.png">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=Manrope:wght@400;500;600&display=swap');
+
+:root {
+  --color-red: #E63946;
+  --color-red-dark: #C6303C;
+  --color-yellow: #F4C430;
+  --color-charcoal: #1F1F1F;
+  --color-warm-white: #FAC430;
+  --color-cream: #FFF8F1;
+  --color-text: #1F1F1F;
+  --color-text-muted: #5C5C58;
+  --color-border: #E8E4DC;
+  --color-surface: #FFFFFF;
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Manrope', sans-serif;
+  --fs-h1: clamp(2.5rem, 5vw, 4.5rem);
+  --fs-h2: clamp(2rem, 3.5vw, 3rem);
+  --fs-h3: clamp(1.5rem, 2.5vw, 2rem);
+  --fs-body-lg: 1.125rem;
+  --fs-body: 1rem;
+  --fs-body-sm: 0.875rem;
+  --fs-caption: 0.75rem;
+  --lh-tight: 1.15; --lh-normal: 1.5; --lh-relaxed: 1.7;
+  --space-1: 8px; --space-2: 16px; --space-3: 24px; --space-4: 32px;
+  --space-5: 40px; --space-6: 48px; --space-8: 64px; --space-10: 80px;
+  --radius-sm: 8px; --radius-md: 16px; --radius-lg: 24px; --radius-full: 999px;
+  --shadow-sm: 0 2px 8px rgba(31,31,31,0.06);
+  --shadow-md: 0 8px 24px rgba(31,31,31,0.08);
+  --shadow-lg: 0 16px 48px rgba(31,31,31,0.12);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 0.2s var(--ease-out);
+  --transition-med: 0.4s var(--ease-out);
+  --max-width: 1280px;
+  --nav-height: 80px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: var(--nav-height); }
+body { font-family: var(--font-body); color: var(--color-text); background: var(--color-warm-white); -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+:focus-visible { outline: 2px solid var(--color-red); outline-offset: 3px; }
+
+h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height: var(--lh-tight); color: var(--color-charcoal); }
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+p { line-height: var(--lh-relaxed); color: var(--color-text-muted); }
+
+.eyebrow { display: inline-block; font-family: var(--font-heading); font-size: var(--fs-caption); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-red); margin-bottom: var(--space-2); }
+.container { width: 100%; max-width: var(--max-width); margin-inline: auto; padding-inline: var(--space-3); }
+.section { padding-block: var(--space-10); }
+.section-header { margin-bottom: var(--space-6); text-align: center; }
+.section-lede { font-size: var(--fs-body-lg); max-width: 560px; margin-inline: auto; }
+.grid { display: grid; gap: var(--space-3); }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--font-heading); font-weight: 500; font-size: var(--fs-body); padding: 14px 28px; border-radius: var(--radius-full); transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast); white-space: nowrap; }
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { background: var(--color-red); color: var(--color-warm-white); box-shadow: var(--shadow-sm); }
+.btn-primary:hover { background: var(--color-red-dark); box-shadow: var(--shadow-md); }
+.btn-secondary { background: var(--color-charcoal); color: var(--color-warm-white); }
+.btn-ghost { background: transparent; color: var(--color-charcoal); border: 1.5px solid var(--color-border); }
+.btn-ghost:hover { border-color: var(--color-charcoal); }
+.btn-sm { padding: 8px 18px; font-size: var(--fs-body-sm); }
+.btn-block { width: 100%; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+.card { background: var(--color-surface); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); overflow: hidden; transition: transform var(--transition-fast), box-shadow var(--transition-fast); }
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.card-body { padding: var(--space-3); }
+
+/* Navbar */
+.navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--nav-height); display: flex; align-items: center; background: rgba(250,250,248,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-border); box-shadow: var(--shadow-sm); }
+.navbar-inner { width: 100%; max-width: var(--max-width); margin-inline: auto; padding-inline: var(--space-3); display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-family: var(--font-heading); font-weight: 600; font-size: 1.25rem; color: var(--color-charcoal); display: flex; align-items: center; gap: 8px; }
+.nav-logo img { height: 32px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: var(--space-4); }
+.nav-links a { font-size: var(--fs-body-sm); font-weight: 500; color: var(--color-text); position: relative; padding-block: 4px; }
+.nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--color-red); transition: width var(--transition-fast); }
+.nav-links a:hover::after, .nav-links a[aria-current="page"]::after { width: 100%; }
+.nav-actions { display: flex; align-items: center; gap: var(--space-2); }
+.nav-toggle { display: none; flex-direction: column; gap: 5px; padding: 8px; }
+.nav-toggle span { width: 22px; height: 2px; background: var(--color-charcoal); border-radius: 2px; transition: transform var(--transition-fast), opacity var(--transition-fast); }
+
+@media (max-width: 900px) {
+  .nav-links { position: fixed; top: var(--nav-height); left: 0; right: 0; background: var(--color-warm-white); flex-direction: column; align-items: flex-start; padding: var(--space-3); gap: var(--space-3); border-bottom: 1px solid var(--color-border); transform: translateY(-150%); transition: transform var(--transition-med); }
+  .nav-links.is-open { transform: translateY(0); }
+  .nav-toggle { display: flex; }
+}
+
+.cart-btn { position: relative; }
+.cart-count { position: absolute; top: -6px; right: -6px; background: var(--color-yellow); color: var(--color-charcoal); font-size: 10px; font-weight: 700; font-family: var(--font-heading); width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+.cart-modal-list { display: flex; flex-direction: column; gap: 10px; max-height: 320px; overflow-y: auto; margin-bottom: var(--space-2); }
+.cart-modal-row { display: flex; justify-content: space-between; align-items: center; gap: var(--space-2); padding: 10px 0; border-bottom: 1px solid var(--color-border); }
+.cart-modal-row-info { display: flex; flex-direction: column; gap: 2px; }
+.cart-modal-row-info span:first-child { font-weight: 500; color: var(--color-charcoal); font-size: var(--fs-body-sm); }
+.cart-modal-row-info span.cart-modal-qty { color: var(--color-text-muted); font-size: var(--fs-caption); }
+.cart-modal-row-price { font-weight: 500; color: var(--color-charcoal); font-size: var(--fs-body-sm); white-space: nowrap; }
+.cart-modal-remove { color: var(--color-red); font-size: var(--fs-caption); text-decoration: underline; cursor: pointer; background: none; border: none; padding: 0; margin-top: 2px; }
+.cart-modal { display: block; max-width: 480px; }
+
+/* Footer */
+.footer { background: var(--color-charcoal); color: var(--color-warm-white); padding-block: var(--space-8) var(--space-4); margin-top: var(--space-10); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: var(--space-4); padding-bottom: var(--space-6); border-bottom: 1px solid rgba(255,255,255,0.1); }
+.footer h4 { color: var(--color-warm-white); font-size: var(--fs-body); margin-bottom: var(--space-2); }
+.footer p, .footer a { color: rgba(255,255,255,0.65); font-size: var(--fs-body-sm); }
+.footer-links li { margin-bottom: 8px; }
+.footer-links a:hover { color: var(--color-yellow); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: var(--space-3); font-size: var(--fs-caption); color: rgba(255,255,255,0.5); flex-wrap: wrap; gap: var(--space-2); }
+@media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+
+/* Menu page specific */
+.menu-hero { padding-top: calc(var(--nav-height) + var(--space-8)); padding-bottom: var(--space-6); background: var(--color-cream); text-align: center; }
+.menu-hero h1 { font-size: var(--fs-h2); margin-bottom: var(--space-2); }
+
+.menu-controls { position: sticky; top: var(--nav-height); z-index: 500; background: rgba(250,250,248,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--color-border); padding-block: var(--space-2); }
+.menu-controls-inner { display: flex; flex-direction: column; gap: var(--space-2); }
+.menu-search { width: 100%; max-width: 400px; padding: 12px 20px; border-radius: var(--radius-full); border: 1.5px solid var(--color-border); background: var(--color-surface); font-size: var(--fs-body-sm); }
+.filter-tabs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+.filter-tabs::-webkit-scrollbar { display: none; }
+.filter-tab { flex-shrink: 0; padding: 8px 18px; border-radius: var(--radius-full); border: 1.5px solid var(--color-border); font-size: var(--fs-body-sm); font-weight: 500; color: var(--color-text-muted); transition: all var(--transition-fast); }
+.filter-tab:hover { border-color: var(--color-charcoal); color: var(--color-charcoal); }
+.filter-tab.is-active { background: var(--color-red); border-color: var(--color-red); color: var(--color-warm-white); }
+
+.menu-grid { grid-template-columns: repeat(4, 1fr); margin-top: var(--space-6); }
+@media (max-width: 1024px) { .menu-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 768px) { .menu-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .menu-grid { grid-template-columns: 1fr; } }
+
+.meal-card { position: relative; cursor: pointer; }
+.meal-card .card-img-wrap { position: relative; }
+.meal-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+.fav-btn { position: absolute; top: 10px; right: 10px; width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center; font-size: 16px; transition: transform var(--transition-fast); z-index: 2; }
+.fav-btn:hover { transform: scale(1.1); }
+.fav-btn.is-active { color: var(--color-red); }
+.meal-category-tag { position: absolute; top: 10px; left: 10px; background: var(--color-charcoal); color: var(--color-warm-white); font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; padding: 4px 10px; border-radius: var(--radius-full); z-index: 2; }
+.meal-meta-row { display: flex; gap: 10px; font-size: var(--fs-caption); color: var(--color-text-muted); margin-block: 8px; }
+.meal-price-row { display: flex; align-items: center; justify-content: space-between; margin-top: var(--space-1); }
+.meal-price { font-family: var(--font-heading); font-weight: 600; color: var(--color-red); font-size: var(--fs-body-lg); }
+.no-results { text-align: center; padding: var(--space-8) 0; grid-column: 1 / -1; }
+
+/* Quick view modal */
+.modal-overlay { position: fixed; inset: 0; z-index: 2000; background: rgba(31,31,31,0.6); display: flex; align-items: center; justify-content: center; padding: var(--space-3); opacity: 0; pointer-events: none; transition: opacity var(--transition-fast); }
+.modal-overlay.is-open { opacity: 1; pointer-events: all; }
+.modal { background: var(--color-surface); border-radius: var(--radius-lg); max-width: 720px; width: 100%; max-height: 85vh; overflow-y: auto; display: grid; grid-template-columns: 1fr 1fr; transform: translateY(20px) scale(0.98); transition: transform var(--transition-med); }
+.modal-overlay.is-open .modal { transform: translateY(0) scale(1); }
+.modal-img { width: 100%; height: 100%; object-fit: cover; min-height: 260px; }
+.modal-content { padding: var(--space-4); position: relative; }
+.modal-close { position: absolute; top: 16px; right: 16px; width: 36px; height: 36px; border-radius: 50%; background: var(--color-cream); font-size: 18px; }
+.modal-content h3 { margin-bottom: 8px; padding-right: 40px; }
+.modal-meta { display: flex; gap: var(--space-2); margin-block: var(--space-2); font-size: var(--fs-body-sm); color: var(--color-text-muted); }
+.modal-price { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 600; color: var(--color-red); margin-block: var(--space-2); }
+.modal-actions { display: flex; gap: 10px; margin-top: var(--space-3); }
+@media (max-width: 640px) { .modal { grid-template-columns: 1fr; } .modal-img { min-height: 200px; } }
+
+/* Build Your Own Meal Box */
+.builder-section { background: var(--color-cream); }
+.builder-layout { display: grid; grid-template-columns: 1.6fr 1fr; gap: var(--space-4); align-items: start; }
+@media (max-width: 900px) { .builder-layout { grid-template-columns: 1fr; } .builder-summary { position: static; } }
+.builder-steps { display: flex; flex-direction: column; gap: var(--space-4); }
+.builder-group h4 { display: flex; align-items: center; gap: 10px; margin-bottom: var(--space-2); }
+.builder-step-num { width: 26px; height: 26px; border-radius: 50%; background: var(--color-red); color: var(--color-warm-white); font-size: var(--fs-caption); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.builder-options { display: flex; flex-wrap: wrap; gap: 10px; }
+.builder-option { display: flex; align-items: center; gap: 8px; padding: 12px 18px; border-radius: var(--radius-full); border: 1.5px solid var(--color-border); background: var(--color-surface); font-size: var(--fs-body-sm); font-weight: 500; color: var(--color-charcoal); transition: all 0.2s var(--ease-out); }
+.builder-option span { color: var(--color-text-muted); font-size: var(--fs-caption); }
+.builder-option:hover { border-color: var(--color-charcoal); }
+.builder-option.is-selected { background: var(--color-red); border-color: var(--color-red); color: var(--color-warm-white); }
+.builder-option.is-selected span { color: rgba(255,255,255,0.85); }
+
+.builder-variant { margin-top: 10px; padding: 12px 16px; background: var(--color-surface); border: 1.5px solid var(--color-border); border-radius: var(--radius-sm); display: flex; align-items: center; gap: 10px; max-width: 320px; }
+.builder-variant label { font-size: var(--fs-body-sm); font-weight: 500; color: var(--color-charcoal); white-space: nowrap; }
+.builder-variant-select { flex: 1; padding: 8px 12px; border-radius: var(--radius-sm); border: 1.5px solid var(--color-border); font-size: var(--fs-body-sm); background: var(--color-warm-white); }
+
+.builder-summary { position: sticky; top: calc(var(--nav-height) + var(--space-2)); }
+.builder-summary-list { display: flex; flex-direction: column; gap: 8px; margin-block: var(--space-2); min-height: 40px; }
+.builder-empty { font-size: var(--fs-body-sm); color: var(--color-text-muted); }
+.builder-summary-row { display: flex; justify-content: space-between; font-size: var(--fs-body-sm); }
+.builder-summary-row span:first-child { color: var(--color-text-muted); }
+.builder-summary-row span:last-child { font-weight: 500; color: var(--color-charcoal); }
+
+.builder-portions-row { display: flex; justify-content: space-between; align-items: center; padding-block: 8px; border-top: 1px solid var(--color-border); margin-top: 8px; font-size: var(--fs-body-sm); }
+.portion-stepper { display: flex; align-items: center; gap: 12px; }
+.portion-stepper button { width: 28px; height: 28px; border-radius: 50%; background: var(--color-cream); color: var(--color-charcoal); font-size: 16px; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+.portion-stepper button:hover { background: var(--color-border); }
+#portion-count { font-family: var(--font-heading); font-weight: 600; min-width: 16px; text-align: center; }
+
+.builder-total-row { display: flex; justify-content: space-between; align-items: center; padding-top: var(--space-2); margin-top: var(--space-2); border-top: 1px solid var(--color-border); font-family: var(--font-heading); font-weight: 600; }
+.builder-total { color: var(--color-red); font-size: 1.1rem; }
+/* Weekly Meal Planner */
+.planner-wrap { overflow-x: auto; }
+.planner-table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: separate;
+  border-spacing: 8px;
+}
+.planner-table th {
+  font-family: var(--font-heading);
+  font-size: var(--fs-body-sm);
+  font-weight: 600;
+  color: var(--color-charcoal);
+  text-align: left;
+  padding: 8px 4px;
+}
+.planner-table td {
+  vertical-align: top;
+}
+.planner-day-label {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: var(--fs-body-sm);
+  color: var(--color-charcoal);
+  white-space: nowrap;
+  padding-top: 14px;
+}
+
+.planner-slot select {
+  width: 100%;
+  min-width: 160px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--color-border);
+  background: var(--color-surface);
+  font-size: var(--fs-body-sm);
+  color: var(--color-text);
+  transition: border-color var(--transition-fast);
+}
+.planner-slot select:focus { border-color: var(--color-red); outline: none; }
+.planner-slot select.is-filled { border-color: var(--color-red); background: #FDF1F1; }
+
+.planner-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+}
+.planner-status { font-size: var(--fs-body-sm); color: var(--color-text-muted); }
+.planner-btns { display: flex; gap: 10px; }
+
+@media (max-width: 640px) {
+  .planner-actions { flex-direction: column; align-items: stretch; }
+  .planner-btns { flex-direction: column; }
+}
+/* Delivery Tracker */
+.tracker-section { background: var(--color-cream); }
+.tracker-inner { max-width: 560px; margin-inline: auto; }
+.tracker-card { padding: var(--space-2); }
+
+.tracker-steps { margin-top: var(--space-4); }
+
+.tracker-step {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  opacity: 0.35;
+  transition: opacity 0.4s var(--ease-out);
+}
+.tracker-step.is-active { opacity: 1; }
+.tracker-step.is-done { opacity: 1; }
+
+.tracker-icon {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--color-cream);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  transition: background 0.4s var(--ease-out), transform 0.3s var(--ease-out);
+}
+.tracker-step.is-active .tracker-icon {
+  background: var(--color-yellow);
+  transform: scale(1.1);
+  animation: tracker-pulse 1s ease-in-out infinite;
+}
+.tracker-step.is-done .tracker-icon { background: #E8F5E9; }
+
+@keyframes tracker-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(244,196,48,0.5); }
+  50% { box-shadow: 0 0 0 8px rgba(244,196,48,0); }
+}
+
+.tracker-step h4 { font-size: var(--fs-body); margin-bottom: 2px; }
+.tracker-step-desc { font-size: var(--fs-body-sm); }
+
+.tracker-line {
+  width: 2px;
+  height: 24px;
+  background: var(--color-border);
+  margin-left: 21px;
+}
+
+.tracker-status {
+  text-align: center;
+  margin-top: var(--space-3);
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: var(--fs-body-sm);
+  color: var(--color-red);
+}
+/* What are you craving? */
+.craving-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: var(--space-5);
+}
+
+.craving-btn {
+  padding: 14px 22px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--color-border);
+  background: var(--color-surface);
+  font-size: var(--fs-body-sm);
+  font-weight: 500;
+  color: var(--color-charcoal);
+  transition: all 0.2s var(--ease-out);
+}
+.craving-btn:hover { border-color: var(--color-charcoal); transform: translateY(-2px); }
+.craving-btn.is-active { background: var(--color-red); border-color: var(--color-red); color: var(--color-warm-white); }
+
+.craving-results { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 1024px) { .craving-results { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 768px) { .craving-results { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .craving-results { grid-template-columns: 1fr; } }
+
+.craving-empty { text-align: center; padding: var(--space-6) 0; grid-column: 1 / -1; }
+/* Floating Assistant */
+.assistant-widget {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1500;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.assistant-toggle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--color-red);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s var(--ease-out);
+}
+.assistant-toggle:hover { transform: scale(1.08); }
+.assistant-toggle-icon { font-size: 1.5rem; }
+
+.assistant-panel {
+  width: 300px;
+  max-width: calc(100vw - 48px);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-3);
+  transform: translateY(12px) scale(0.96);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.25s var(--ease-out), opacity 0.25s var(--ease-out);
+}
+.assistant-panel.is-open {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.assistant-panel-header {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-bottom: var(--space-2);
+  position: relative;
+}
+.assistant-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--color-cream);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.assistant-panel-header h4 { font-size: var(--fs-body); margin-bottom: 2px; }
+.assistant-panel-header p { font-size: var(--fs-body-sm); line-height: 1.4; }
+.assistant-close {
+  position: absolute;
+  top: -4px; right: -4px;
+  width: 24px; height: 24px;
+  font-size: 16px;
+  color: var(--color-text-muted);
+}
+
+.assistant-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.assistant-option {
+  display: block;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--color-cream);
+  font-size: var(--fs-body-sm);
+  font-weight: 500;
+  color: var(--color-charcoal);
+  transition: background 0.2s var(--ease-out);
+}
+.assistant-option:hover { background: var(--color-border); }
+
+@media (max-width: 480px) {
+  .assistant-widget { bottom: 16px; right: 16px; }
+  .assistant-toggle { width: 52px; height: 52px; }
+}
+/* Standalone Invoice Generator */
+.invoice-gen-section { background: var(--color-cream); }
+.invoice-gen-card { max-width: 560px; margin-inline: auto; }
+
+.si-items-list { display: flex; flex-direction: column; gap: 8px; }
+.si-item-row { display: grid; grid-template-columns: 2fr 1fr 0.7fr auto; gap: 8px; align-items: center; }
+.si-item-row input {
+  padding: 10px 12px; border-radius: var(--radius-sm);
+  border: 1.5px solid var(--color-border); background: var(--color-warm-white);
+  font-size: var(--fs-body-sm);
+}
+.si-item-remove { color: var(--color-red); font-size: 1.1rem; width: 28px; text-align: center; }
+
+.si-total-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: var(--space-2); margin-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+  font-family: var(--font-heading); font-weight: 600; font-size: 1.1rem;
+  color: var(--color-red);
+}
+
+@media (max-width: 480px) {
+  .si-item-row { grid-template-columns: 1fr 1fr; }
+  .si-item-row input:nth-child(3) { grid-column: 1; }
+  .si-item-remove { grid-column: 2; justify-self: end; }
+}
+
+/* Invoice modal (shared look with any other invoice styling) */
+.invoice-modal { max-width: 520px; }
+.invoice-header { text-align: center; border-bottom: 2px solid var(--color-charcoal); padding-bottom: var(--space-2); margin-bottom: var(--space-2); }
+.invoice-header h2 { font-size: 1.5rem; margin-bottom: 4px; }
+.invoice-meta { display: flex; justify-content: space-between; font-size: var(--fs-caption); color: var(--color-text-muted); margin-bottom: var(--space-2); }
+.invoice-table { width: 100%; border-collapse: collapse; margin-bottom: var(--space-2); }
+.invoice-table th { text-align: left; font-size: var(--fs-caption); text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-text-muted); border-bottom: 1px solid var(--color-border); padding-bottom: 6px; }
+.invoice-table td { font-size: var(--fs-body-sm); padding-block: 8px; border-bottom: 1px solid var(--color-border); }
+.invoice-totals-row { display: flex; justify-content: space-between; font-size: var(--fs-body-sm); padding-block: 4px; }
+.invoice-totals-final { font-family: var(--font-heading); font-weight: 700; font-size: var(--fs-body-lg); color: var(--color-red); border-top: 1px solid var(--color-charcoal); margin-top: 6px; padding-top: 8px; }
+.invoice-footer-note { text-align: center; font-size: var(--fs-caption); color: var(--color-text-muted); margin-top: var(--space-3); }
+.invoice-actions { display: flex; gap: 10px; margin-top: var(--space-3); }
+.invoice-actions .btn { flex: 1; }
+
+@media print {
+  body * { visibility: hidden; }
+  #si-invoice-content, #si-invoice-content * { visibility: visible; }
+  #si-invoice-content { position: absolute; top: 0; left: 0; width: 100%; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<header class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="images/logo.png" alt="Yumly Yours logo">
+      Yumly Yours
+    </a>
+    <nav id="nav-links" class="nav-links" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="menu.html" aria-current="page">Menu</a>
+      <a href="about.html">About</a>
+      <a href="reservations.html">Reservations</a>
+      <a href="private-chef.html">Private Chef</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+ <a href="corporate-catering.html">Corporate catering</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="btn btn-primary cart-btn" id="cart-btn">
+        Cart <span class="cart-count" id="cart-count">0</span>
+      </button>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MENU HERO ===== -->
+<section class="menu-hero">
+  <div class="container">
+    <p class="eyebrow">Our Menu</p>
+    <h1>Something For Every Craving</h1>
+    <p class="section-lede">Nigerian classics, continental favorites, and chef specials — all made fresh daily.</p>
+  </div>
+</section>
+
+<!-- ===== FILTER + SEARCH BAR ===== -->
+<div class="menu-controls">
+  <div class="container menu-controls-inner">
+    <input type="text" id="menu-search" class="menu-search" placeholder="Search meals..." aria-label="Search meals">
+    <div class="filter-tabs" id="filter-tabs">
+      <button class="filter-tab is-active" data-category="all">All</button>
+      <button class="filter-tab" data-category="breakfast">Breakfast</button>
+      <button class="filter-tab" data-category="lunch">Lunch</button>
+      <button class="filter-tab" data-category="dinner">Dinner</button>
+      <button class="filter-tab" data-category="nigerian">Nigerian</button>
+      <button class="filter-tab" data-category="continental">Continental</button>
+      <button class="filter-tab" data-category="healthy">Healthy</button>
+      <button class="filter-tab" data-category="vegan">Vegan</button>
+      <button class="filter-tab" data-category="desserts">Desserts</button>
+      <button class="filter-tab" data-category="drinks">Drinks</button>
+      <button class="filter-tab" data-category="specials">Chef Specials</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MEAL GRID ===== -->
+<section class="section" style="padding-top: var(--space-4);">
+  <div class="container">
+    <div class="grid menu-grid" id="menu-grid"></div>
+  </div>
+</section>
+
+<!-- ===== BUILD YOUR OWN MEAL BOX ===== -->
+<section class="section builder-section">
+  <div class="container">
+    <div class="section-header">
+      <p class="eyebrow">Customize It Your Way</p>
+      <h2>Build Your Own Meal Box</h2>
+      <p class="section-lede">Pick your protein, carbs, vegetables, and drink — your total updates as you go.</p>
+    </div>
+
+    <div class="builder-layout">
+
+      <div class="builder-steps">
+
+        <div class="builder-group">
+          <h4><span class="builder-step-num">1</span> Choose Protein</h4>
+          <div class="builder-options" data-group="protein">
+            <button class="builder-option" data-name="Chicken" data-price="1500">Chicken <span>₦1,500</span></button>
+            <button class="builder-option" data-name="Beef" data-price="1800">Beef <span>₦1,800</span></button>
+            <button class="builder-option" data-name="Fish" data-price="2000">Fish <span>₦2,000</span></button>
+            <button class="builder-option" data-name="Turkey" data-price="1900">Turkey <span>₦1,900</span></button>
+            <button class="builder-option" data-name="Plant-based" data-price="1600">Plant-based <span>₦1,600</span></button>
+          </div>
+        </div>
+
+        <div class="builder-group">
+          <h4><span class="builder-step-num">2</span> Choose Carbs</h4>
+          <div class="builder-options" data-group="carbs">
+            <button class="builder-option" data-name="Rice" data-price="800" data-has-variant="true">Rice <span>₦800</span></button>
+            <button class="builder-option" data-name="Yam" data-price="900">Yam <span>₦900</span></button>
+            <button class="builder-option" data-name="Potatoes" data-price="850">Potatoes <span>₦850</span></button>
+            <button class="builder-option" data-name="Pasta" data-price="900" data-has-variant="true">Pasta <span>₦900</span></button>
+          </div>
+
+          <div class="builder-variant" id="variant-rice" style="display:none;">
+            <label for="rice-type">Rice type</label>
+            <select id="rice-type" class="builder-variant-select">
+              <option value="Jollof Rice">Jollof Rice</option>
+              <option value="White Rice">White Rice</option>
+              <option value="Fried Rice">Fried Rice</option>
+              <option value="Coconut Rice">Coconut Rice</option>
+            </select>
+          </div>
+
+          <div class="builder-variant" id="variant-pasta" style="display:none;">
+            <label for="pasta-type">Pasta type</label>
+            <select id="pasta-type" class="builder-variant-select">
+              <option value="Spaghetti">Spaghetti</option>
+              <option value="Penne">Penne</option>
+              <option value="Fusilli">Fusilli</option>
+              <option value="Macaroni">Macaroni</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="builder-group">
+          <h4><span class="builder-step-num">3</span> Choose Vegetables</h4>
+          <div class="builder-options" data-group="vegetables">
+            <button class="builder-option" data-name="Steamed Greens" data-price="500">Steamed Greens <span>₦500</span></button>
+            <button class="builder-option" data-name="Grilled Peppers" data-price="500">Grilled Peppers <span>₦500</span></button>
+            <button class="builder-option" data-name="Coleslaw" data-price="600">Coleslaw <span>₦600</span></button>
+            <button class="builder-option" data-name="Sautéed Okra" data-price="550">Sautéed Okra <span>₦550</span></button>
+          </div>
+        </div>
+
+        <div class="builder-group">
+          <h4><span class="builder-step-num">4</span> Choose Drink</h4>
+          <div class="builder-options" data-group="drink">
+            <button class="builder-option" data-name="Chapman" data-price="1200">Chapman <span>₦1,200</span></button>
+            <button class="builder-option" data-name="Zobo" data-price="900">Zobo <span>₦900</span></button>
+            <button class="builder-option" data-name="Bottled Water" data-price="500">Bottled Water <span>₦500</span></button>
+            <button class="builder-option" data-name="No Drink" data-price="0">No Drink <span>₦0</span></button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="builder-summary card">
+        <div class="card-body">
+          <h4>Your Meal Box</h4>
+          <div class="builder-summary-list" id="builder-summary-list">
+            <p class="builder-empty">Start selecting to build your box.</p>
+          </div>
+
+          <div class="builder-portions-row">
+            <span>Portions</span>
+            <div class="portion-stepper">
+              <button type="button" id="portion-minus" aria-label="Decrease portions">−</button>
+              <span id="portion-count">1</span>
+              <button type="button" id="portion-plus" aria-label="Increase portions">+</button>
+            </div>
+          </div>
+
+          <div class="builder-total-row">
+            <span>Total</span>
+            <span class="builder-total" id="builder-total">₦0</span>
+          </div>
+          <button class="btn btn-primary btn-block" id="builder-add-btn" disabled>Add to Cart</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- ===== WEEKLY MEAL PLANNER ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <p class="eyebrow">Plan Ahead</p>
+      <h2>Weekly Meal Planner</h2>
+      <p class="section-lede">Assign a meal to each slot, then download your plan or order the whole week in one go.</p>
+    </div>
+
+    <div class="planner-wrap">
+      <table class="planner-table" id="planner-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Breakfast</th>
+            <th>Lunch</th>
+            <th>Dinner</th>
+          </tr>
+        </thead>
+        <tbody id="planner-body">
+          <!-- Rows injected by JS -->
+        </tbody>
+      </table>
+
+      <div class="planner-actions">
+        <p class="planner-status" id="planner-status">0 of 15 slots filled</p>
+        <div class="planner-btns">
+          <button class="btn btn-ghost" id="planner-download-btn">Download Plan</button>
+          <button class="btn btn-primary" id="planner-order-btn">Order This Plan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ===== DELIVERY TRACKER ===== -->
+<section class="section tracker-section">
+  <div class="container tracker-inner">
+    <div class="section-header">
+      <p class="eyebrow">Order Status</p>
+      <h2>Track Your Delivery</h2>
+      <p class="section-lede">See exactly where your order is, from kitchen to your door.</p>
+    </div>
+
+    <div class="card tracker-card">
+      <div class="card-body">
+        <button class="btn btn-primary btn-block" id="tracker-start-btn">Simulate My Order</button>
+
+        <div class="tracker-steps" id="tracker-steps" style="display:none;">
+          <div class="tracker-step" data-step="0">
+            <div class="tracker-icon">✅</div>
+            <div>
+              <h4>Order Confirmed</h4>
+              <p class="tracker-step-desc">We've received your order and sent it to the kitchen.</p>
+            </div>
+          </div>
+          <div class="tracker-line"></div>
+
+          <div class="tracker-step" data-step="1">
+            <div class="tracker-icon">🍳</div>
+            <div>
+              <h4>Cooking</h4>
+              <p class="tracker-step-desc">Your meal is being freshly prepared.</p>
+            </div>
+          </div>
+          <div class="tracker-line"></div>
+
+          <div class="tracker-step" data-step="2">
+            <div class="tracker-icon">🔍</div>
+            <div>
+              <h4>Quality Check</h4>
+              <p class="tracker-step-desc">A final check for taste, temperature, and packaging.</p>
+            </div>
+          </div>
+          <div class="tracker-line"></div>
+
+          <div class="tracker-step" data-step="3">
+            <div class="tracker-icon">🛵</div>
+            <div>
+              <h4>Out for Delivery</h4>
+              <p class="tracker-step-desc">Your rider is on the way to you.</p>
+            </div>
+          </div>
+          <div class="tracker-line"></div>
+
+          <div class="tracker-step" data-step="4">
+            <div class="tracker-icon">🎉</div>
+            <div>
+              <h4>Delivered</h4>
+              <p class="tracker-step-desc">Enjoy your meal!</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="tracker-status" id="tracker-status-text" style="display:none;"></p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ===== WHAT ARE YOU CRAVING? ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <p class="eyebrow">Not Sure What to Order?</p>
+      <h2>What Are You Craving Today?</h2>
+      <p class="section-lede">Tap a mood and we'll pull up meals that match.</p>
+    </div>
+
+    <div class="craving-buttons" id="craving-buttons">
+      <button class="craving-btn" data-craving="comfort">🍲 Comfort Food</button>
+      <button class="craving-btn" data-craving="healthy">🥗 Healthy</button>
+      <button class="craving-btn" data-craving="protein">💪 Protein Rich</button>
+      <button class="craving-btn" data-craving="quick">⚡ Quick Lunch</button>
+      <button class="craving-btn" data-craving="family">👨‍👩‍👧 Family Dinner</button>
+      <button class="craving-btn" data-craving="romantic">🕯️ Romantic Dinner</button>
+    </div>
+
+    <div class="grid craving-results" id="craving-results"></div>
+  </div>
+</section>
+<!-- ===== QUICK VIEW MODAL ===== -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal" id="modal-content"></div>
+</div>
+<!-- ===== CART MODAL ===== -->
+<div class="modal-overlay" id="cart-modal-overlay">
+  <div class="modal cart-modal">
+    <button class="modal-close" id="cart-modal-close" aria-label="Close cart">&times;</button>
+    <h3 style="margin-bottom: var(--space-3);">Your Cart</h3>
+    <div id="cart-modal-list" class="cart-modal-list"></div>
+    <div class="builder-total-row" id="cart-modal-total-row" style="display:none;">
+      <span>Total</span>
+      <span class="builder-total" id="cart-modal-total">₦0</span>
+    </div>
+    <button class="btn btn-primary btn-block" id="cart-checkout-btn" style="margin-top: var(--space-3);">Checkout</button>
+  </div>
+</div>
+<!-- ===== STANDALONE INVOICE GENERATOR ===== -->
+<section class="section invoice-gen-section">
+  <div class="container">
+    <div class="section-header">
+      <p class="eyebrow">Quick Tool</p>
+      <h2>Generate an Invoice</h2>
+      <p class="section-lede">Add your details and items to create a printable invoice.</p>
+    </div>
+
+    <div class="card invoice-gen-card">
+      <div class="card-body">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="si-name">Customer Name</label>
+            <input type="text" id="si-name" placeholder="Full name">
+          </div>
+          <div class="form-group">
+            <label for="si-phone">Phone</label>
+            <input type="tel" id="si-phone" placeholder="080X XXX XXXX">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="si-address">Delivery Address</label>
+          <input type="text" id="si-address" placeholder="Full address">
+        </div>
+
+        <label style="display:block; font-family: var(--font-heading); font-size: var(--fs-body-sm); font-weight: 500; margin-bottom: 8px; color: var(--color-charcoal);">Items</label>
+
+        <div id="si-items-list" class="si-items-list"></div>
+
+        <button type="button" class="btn btn-ghost btn-sm" id="si-add-item-btn" style="margin-top: 8px;">+ Add Item</button>
+
+        <div class="si-total-row">
+          <span>Total</span>
+          <span id="si-running-total">₦0</span>
+        </div>
+
+        <button class="btn btn-primary btn-block" id="si-generate-btn" style="margin-top: var(--space-2);">Generate Invoice</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STANDALONE INVOICE MODAL ===== -->
+<div class="modal-overlay" id="si-invoice-overlay">
+  <div class="modal invoice-modal">
+    <button class="modal-close" id="si-invoice-close" aria-label="Close">&times;</button>
+    <div id="si-invoice-content"></div>
+    <div class="invoice-actions">
+      <button class="btn btn-ghost" id="si-print-btn">Print</button>
+      <button class="btn btn-primary" id="si-download-btn">Download Invoice</button>
+    </div>
+  </div>
+</div>
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>Yumly Yours</h4>
+        <p>Meals, Made For You. Premium dining, meal subscriptions, and private chefs — Victoria Island, Lagos.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul class="footer-links">
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="private-chef.html">Private Chef</a></li>
+          <li><a href="reservations.html">Reservations</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul class="footer-links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="corporate-catering.html">Corporate Catering</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li>Victoria Island, Lagos</li>
+          <li><a href="tel:+2340000000000">+234 913 0255 872</a></li>
+          <li><a href="mailto:hello@yumlyyours.com">hello@yumlyyours.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Yumly Yours. All rights reserved.</p>
+      <p>Privacy Policy · Terms of Service</p>
+    </div>
+  </div>
+</footer>
+<!-- ===== FLOATING ASSISTANT ===== -->
+<div class="assistant-widget" id="assistant-widget">
+  <div class="assistant-panel" id="assistant-panel">
+    <div class="assistant-panel-header">
+      <div class="assistant-avatar">👋</div>
+      <div>
+        <h4>Hi there!</h4>
+        <p>Need meals for the week? I can help you choose in under a minute.</p>
+      </div>
+      <button class="assistant-close" id="assistant-close" aria-label="Close">&times;</button>
+    </div>
+
+    <div class="assistant-options">
+      <a href="menu.html" class="assistant-option">🍽️ Browse the Menu</a>
+      <a href="index.html#quiz-open-btn" class="assistant-option" id="assistant-quiz-link">🎯 Take the 60-Second Quiz</a>
+      <a href="private-chef.html" class="assistant-option">🧑‍🍳 Book a Private Chef</a>
+      <a href="contact.html" class="assistant-option">💬 Talk to a Human</a>
+    </div>
+  </div>
+
+  <button class="assistant-toggle" id="assistant-toggle" aria-label="Open help assistant">
+    <span class="assistant-toggle-icon">💬</span>
+  </button>
+</div>
+
+<script>
+// ===== Mobile nav toggle =====
+const navToggle = document.getElementById('nav-toggle');
+const navLinks = document.getElementById('nav-links');
+navToggle.addEventListener('click', () => {
+  const isOpen = navLinks.classList.toggle('is-open');
+  navToggle.setAttribute('aria-expanded', isOpen);
+});
+
+// ===== Meal data =====
+const meals = [
+  { id: 1, name: 'Jollof Rice & Grilled Chicken', category: 'nigerian', tag: 'Lunch', price: 14500, calories: 620, prepTime: 20, img: 'images/meal-jollof.jpg', desc: 'Smoky party-style jollof rice with charcoal-grilled chicken thigh and fried plantain.' },
+  { id: 2, name: 'Ofada Rice & Ayamase', category: 'nigerian', tag: 'Dinner', price: 14500, calories: 700, prepTime: 25, img: 'images/meal-ofada.jpg', desc: 'Local ofada rice served with our signature green pepper ayamase sauce and assorted meat.' },
+  { id: 3, name: 'Pasta Alfredo & Shrimp', category: 'continental', tag: 'Dinner', price: 16500, calories: 580, prepTime: 18, img: 'images/meal-pasta.jpg', desc: 'Creamy alfredo pasta tossed with garlic butter shrimp and fresh parsley.' },
+  { id: 4, name: 'Grilled Chicken Salad Bowl', category: 'healthy', tag: 'Breakfast', price: 19000, calories: 410, prepTime: 12, img: 'images/meal-salad.jpg', desc: 'Mixed greens, grilled chicken breast, cherry tomatoes, avocado, and citrus vinaigrette.' },
+  { id: 5, name: 'Yam Porridge (Asaro)', category: 'nigerian', tag: 'Lunch', price: 13800, calories: 540, prepTime: 22, img: 'images/meal-yam.jpg', desc: 'Soft-boiled yam simmered in a rich palm oil and pepper sauce with smoked fish.' },
+  { id: 6, name: 'pineapple Rice & shrimps', category: 'nigerian', tag: 'Dinner', price: 23500, calories: 610, prepTime: 20, img: 'images/meal-coconut-rice.jpg', desc: 'Fragrant pineapple rice paired with pan-seared shrimps.' },
+  { id: 7, name: 'Vegan Buddha Bowl', category: 'vegan', tag: 'Dinner', price: 30000, calories: 450, prepTime: 15, img: 'images/meal-buddha-bowl.jpg', desc: 'Quinoa, roasted chickpeas, sweet potato, kale, and tahini dressing.' },
+  { id: 8, name: 'Continental Breakfast Plate', category: 'continental', tag: 'Breakfast', price: 22000, calories: 480, prepTime: 14, img: 'images/meal-breakfast.jpg', desc: 'Scrambled eggs, turkey bacon, sautéed vegetables, and toasted sourdough.' },
+  { id: 9, name: "Chef's Seafood Okra Special", category: 'specials', tag: 'Dinner', price: 25000, calories: 650, prepTime: 30, img: 'images/meal-okra.jpg', desc: 'A Yumly signature: seafood okra soup with prawns, crab, and smoked catfish.' },
+  { id: 10, name: 'Chapman Mocktail', category: 'drinks', tag: 'Drinks', price: 18000, calories: 180, prepTime: 5, img: 'images/meal-chapman.jpg', desc: 'A refreshing house-blend Chapman with citrus and grenadine.' },
+  { id: 11, name: 'Chocolate cake & icecream toppings', category: 'desserts', tag: 'Desserts', price: 22000, calories: 320, prepTime: 5, img: 'images/meal-desert.jpg', desc: 'moist chocolate cake with rich  icream toppings of your choice.' },
+  { id: 12, name: 'Executive Meal Plan', category: 'specials', tag: 'Meal Plan', price: 150000, calories: 3500, prepTime: 0, img: 'images/meal-plan.jpg', desc: '7 chef-curated dinners, plated, portioned and ready to serve.' },
+{ id: 12, name: 'Bulk Meal Plan', category: 'specials', tag: 'Meal Plan', price: 280000, calories: 7000, prepTime: 0, img: 'images/meal-bulk.jpg', desc: '6 chef-curated dinners delivered weekly, portioned and ready to heat.' },
+  { id: 13, name: 'Gourmet Beef Burger', category: 'continental', tag: 'Lunch', price: 15200, calories: 680, prepTime: 18, img: 'images/meal-burger.jpg', desc: 'Juicy beef patty, melted cheese, and house sauce on a toasted sesame bun.' },
+  { id: 14, name: 'Spicy Chicken Wings', category: 'continental', tag: 'Dinner', price: 14800, calories: 590, prepTime: 20, img: 'images/meal-wings.jpg', desc: 'Crispy wings tossed in a spicy glaze, paired with a cool dipping sauce.' },
+  { id: 15, name: 'Grilled Chicken Wrap', category: 'continental', tag: 'Lunch', price: 14500, calories: 450, prepTime: 12, img: 'images/meal-wrap.jpg', desc: 'Grilled chicken, fresh greens, and tomato wrapped in a soft tortilla.' },
+  { id: 16, name: 'Spaghetti Bolognese', category: 'continental', tag: 'Dinner', price: 17500, calories: 650, prepTime: 22, img: 'images/meal-bolognese.jpg', desc: 'Slow-simmered beef ragu tossed with al dente spaghetti and parmesan.' },
+  { id: 17, name: 'Pepperoni Pizza', category: 'continental', tag: 'Dinner', price: 21500, calories: 720, prepTime: 25, img: 'images/meal-pizza.jpg', desc: 'Wood-fired pizza loaded with pepperoni and a perfectly crisp crust.' },
+  { id: 18, name: 'Strawberry Shortcake', category: 'desserts', tag: 'Desserts', price: 18000, calories: 380, prepTime: 8, img: 'images/meal-shortcake.jpg', desc: 'Layered vanilla sponge with fresh strawberries and whipped cream.' },
+  { id: 19, name: 'Porn star martini', category: 'drinks', tag: 'Drinks', price: 20000, calories: 160, prepTime: 5, img: 'images/meal-spiritz.jpg', desc: 'A refreshing house cocktail with cognac and a citrus finish.' },
+  { id: 20, name: 'Chrispy chicken & chips', category: 'specials', tag: 'Lunch', price: 10800, calories: 390, prepTime: 10, img: 'images/meal-chips.jpg', desc: 'Crisp chicken and chips, parmesan, croutons, paired with ketchup or chilli sauce.' },
+];
+
+let activeCategory = 'all';
+let searchTerm = '';
+let favorites = new Set();
+let cartCount = 0;
+let cartItems = []; // { name, price, qty }
+
+function addToCart(name, price, qty = 1) {
+  const existing = cartItems.find(i => i.name === name && i.price === price);
+  if (existing) {
+    existing.qty += qty;
+  } else {
+    cartItems.push({ name, price, qty });
+  }
+  cartCount += qty;
+  cartCountEl.textContent = cartCount;
+}
+
+const menuGrid = document.getElementById('menu-grid');
+const filterTabs = document.getElementById('filter-tabs');
+const searchInput = document.getElementById('menu-search');
+const cartCountEl = document.getElementById('cart-count');
+
+function renderMeals() {
+  const filtered = meals.filter(meal => {
+    const matchesCategory = activeCategory === 'all' || meal.category === activeCategory || meal.tag.toLowerCase() === activeCategory;
+    const matchesSearch = meal.name.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
+
+  if (filtered.length === 0) {
+    menuGrid.innerHTML = `<div class="no-results"><h4>No meals found</h4><p>Try a different search or category.</p></div>`;
+    return;
+  }
+
+  menuGrid.innerHTML = filtered.map(meal => `
+    <div class="card meal-card" data-id="${meal.id}">
+      <div class="card-img-wrap">
+        <span class="meal-category-tag">${meal.tag}</span>
+        <button class="fav-btn ${favorites.has(meal.id) ? 'is-active' : ''}" data-fav="${meal.id}" aria-label="Toggle favorite">
+          ${favorites.has(meal.id) ? '♥' : '♡'}
+        </button>
+        <img src="${meal.img}" alt="${meal.name}" loading="lazy">
+      </div>
+      <div class="card-body">
+        <h4>${meal.name}</h4>
+        <div class="meal-meta-row">
+          <span>${meal.calories} kcal</span>
+          <span>·</span>
+          <span>${meal.prepTime} min</span>
+        </div>
+        <div class="meal-price-row">
+          <span class="meal-price">₦${meal.price.toLocaleString()}</span>
+          <button class="btn btn-primary btn-sm" data-add="${meal.id}">Add</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+renderMeals();
+// ===== Weekly Meal Planner =====
+const plannerDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+const plannerMealTypes = ['breakfast', 'lunch', 'dinner'];
+const plannerBody = document.getElementById('planner-body');
+const plannerStatus = document.getElementById('planner-status');
+const plannerSelections = {}; // key: "Monday-breakfast" -> meal object
+
+function buildPlannerOptions() {
+  return meals.map(m => `<option value="${m.id}">${m.name} — ₦${m.price.toLocaleString()}</option>`).join('');
+}
+
+function renderPlanner() {
+  plannerBody.innerHTML = plannerDays.map(day => `
+    <tr>
+      <td class="planner-day-label">${day}</td>
+      ${plannerMealTypes.map(type => `
+        <td class="planner-slot">
+          <select data-day="${day}" data-type="${type}">
+            <option value="">— Select —</option>
+            ${buildPlannerOptions()}
+          </select>
+        </td>
+      `).join('')}
+    </tr>
+  `).join('');
+}
+
+renderPlanner();
+
+plannerBody.addEventListener('change', (e) => {
+  const select = e.target.closest('select');
+  if (!select) return;
+
+  const key = `${select.dataset.day}-${select.dataset.type}`;
+  const mealId = select.value;
+
+  if (mealId) {
+    const meal = meals.find(m => m.id === parseInt(mealId, 10));
+    plannerSelections[key] = { day: select.dataset.day, type: select.dataset.type, meal };
+    select.classList.add('is-filled');
+  } else {
+    delete plannerSelections[key];
+    select.classList.remove('is-filled');
+  }
+
+  updatePlannerStatus();
+});
+
+function updatePlannerStatus() {
+  const filledCount = Object.keys(plannerSelections).length;
+  plannerStatus.textContent = `${filledCount} of 15 slots filled`;
+}
+
+// ===== Download Plan =====
+document.getElementById('planner-download-btn').addEventListener('click', () => {
+  const entries = Object.values(plannerSelections);
+
+  if (entries.length === 0) {
+    alert('Add at least one meal to your plan before downloading.');
+    return;
+  }
+
+  let text = 'YUMLY YOURS — WEEKLY MEAL PLAN\n';
+  text += '================================\n\n';
+
+  plannerDays.forEach(day => {
+    text += `${day}\n`;
+    plannerMealTypes.forEach(type => {
+      const key = `${day}-${type}`;
+      const label = type.charAt(0).toUpperCase() + type.slice(1);
+      const entry = plannerSelections[key];
+      text += `  ${label}: ${entry ? entry.meal.name + ' (₦' + entry.meal.price.toLocaleString() + ')' : '—'}\n`;
+    });
+    text += '\n';
+  });
+
+  const total = entries.reduce((sum, e) => sum + e.meal.price, 0);
+  text += `Total: ₦${total.toLocaleString()}\n`;
+
+  const blob = new Blob([text], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'yumly-yours-weekly-plan.txt';
+  link.click();
+  URL.revokeObjectURL(url);
+});
+
+// ===== Order This Plan =====
+document.getElementById('planner-order-btn').addEventListener('click', () => {
+  const entries = Object.values(plannerSelections);
+
+  if (entries.length === 0) {
+    alert('Add at least one meal to your plan before ordering.');
+    return;
+  }
+
+  entries.forEach(entry => addToCart(entry.meal.name, entry.meal.price, 1));
+
+  const btn = document.getElementById('planner-order-btn');
+  btn.textContent = `Added ${entries.length} Meals ✓`;
+  setTimeout(() => { btn.textContent = 'Order This Plan'; }, 1800);
+});
+
+filterTabs.addEventListener('click', (e) => {
+  const tab = e.target.closest('.filter-tab');
+  if (!tab) return;
+  filterTabs.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('is-active'));
+  tab.classList.add('is-active');
+  activeCategory = tab.dataset.category;
+  renderMeals();
+});
+
+searchInput.addEventListener('input', (e) => {
+  searchTerm = e.target.value;
+  renderMeals();
+});
+
+menuGrid.addEventListener('click', (e) => {
+  const favBtn = e.target.closest('[data-fav]');
+  const addBtn = e.target.closest('[data-add]');
+  const card = e.target.closest('.meal-card');
+
+  if (favBtn) {
+    const id = parseInt(favBtn.dataset.fav, 10);
+    favorites.has(id) ? favorites.delete(id) : favorites.add(id);
+    renderMeals();
+    return;
+  }
+
+  if (addBtn) {
+    const meal = meals.find(m => m.id === parseInt(addBtn.dataset.add, 10));
+    if (meal) addToCart(meal.name, meal.price, 1);
+    addBtn.textContent = 'Added ✓';
+    setTimeout(() => { addBtn.textContent = 'Add'; }, 1200);
+    return;
+  }
+
+  if (card) {
+    openQuickView(parseInt(card.dataset.id, 10));
+  }
+});
+
+const modalOverlay = document.getElementById('modal-overlay');
+const modalContent = document.getElementById('modal-content');
+
+function openQuickView(id) {
+  const meal = meals.find(m => m.id === id);
+  if (!meal) return;
+
+  modalContent.innerHTML = `
+    <img src="${meal.img}" alt="${meal.name}" class="modal-img">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+      <p class="eyebrow">${meal.tag}</p>
+      <h3>${meal.name}</h3>
+      <p>${meal.desc}</p>
+      <div class="modal-meta">
+        <span>${meal.calories} kcal</span>
+        <span>${meal.prepTime} min prep</span>
+      </div>
+      <div class="modal-price">₦${meal.price.toLocaleString()}</div>
+      <div class="modal-actions">
+        <button class="btn btn-primary" id="modal-add">Add to Cart</button>
+        <button class="btn btn-ghost" id="modal-close-btn">Close</button>
+      </div>
+    </div>
+  `;
+
+  modalOverlay.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+
+  document.getElementById('modal-close').addEventListener('click', closeQuickView);
+  document.getElementById('modal-close-btn').addEventListener('click', closeQuickView);
+  document.getElementById('modal-add').addEventListener('click', () => {
+    addToCart(meal.name, meal.price, 1);
+    closeQuickView();
+  });
+}
+
+function closeQuickView() {
+  modalOverlay.classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+
+modalOverlay.addEventListener('click', (e) => {
+  if (e.target === modalOverlay) closeQuickView();
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeQuickView();
+});
+
+// ===== Cart Modal =====
+const cartBtn = document.getElementById('cart-btn');
+const cartModalOverlay = document.getElementById('cart-modal-overlay');
+const cartModalList = document.getElementById('cart-modal-list');
+const cartModalTotalRow = document.getElementById('cart-modal-total-row');
+const cartModalTotalEl = document.getElementById('cart-modal-total');
+const cartModalClose = document.getElementById('cart-modal-close');
+const cartCheckoutBtn = document.getElementById('cart-checkout-btn');
+
+function renderCartModal() {
+  if (cartItems.length === 0) {
+    cartModalList.innerHTML = '<p class="cart-modal-empty">Your cart is empty.</p>';
+    cartModalTotalRow.style.display = 'none';
+    cartCheckoutBtn.disabled = true;
+    return;
+  }
+
+  cartModalList.innerHTML = cartItems.map((item, index) => `
+    <div class="cart-modal-row">
+      <div class="cart-modal-row-info">
+        <span>${item.name}</span>
+        <span class="cart-modal-qty">Qty: ${item.qty} × ₦${item.price.toLocaleString()}</span>
+        <button type="button" class="cart-modal-remove" data-remove="${index}">Remove</button>
+      </div>
+      <div class="cart-modal-row-price">₦${(item.price * item.qty).toLocaleString()}</div>
+    </div>
+  `).join('');
+
+  const total = cartItems.reduce((sum, item) => sum + item.price * item.qty, 0);
+  cartModalTotalRow.style.display = 'flex';
+  cartModalTotalEl.textContent = '₦' + total.toLocaleString();
+  cartCheckoutBtn.disabled = false;
+}
+
+function openCartModal() {
+  renderCartModal();
+  cartModalOverlay.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCartModal() {
+  cartModalOverlay.classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+
+cartBtn.addEventListener('click', openCartModal);
+cartModalClose.addEventListener('click', closeCartModal);
+cartModalOverlay.addEventListener('click', (e) => {
+  if (e.target === cartModalOverlay) closeCartModal();
+});
+
+cartModalList.addEventListener('click', (e) => {
+  const removeBtn = e.target.closest('[data-remove]');
+  if (!removeBtn) return;
+  const index = parseInt(removeBtn.dataset.remove, 10);
+  const removed = cartItems[index];
+  cartCount -= removed.qty;
+  cartItems.splice(index, 1);
+  cartCountEl.textContent = cartCount;
+  renderCartModal();
+});
+
+cartCheckoutBtn.addEventListener('click', () => {
+  if (cartItems.length === 0) return;
+  const total = cartItems.reduce((sum, item) => sum + item.price * item.qty, 0);
+  alert('Thank you for your order! Total: ₦' + total.toLocaleString() + '\nWe will be in touch shortly to confirm delivery.');
+  cartItems = [];
+  cartCount = 0;
+  cartCountEl.textContent = cartCount;
+  closeCartModal();
+});
+
+// ===== Build Your Own Meal Box =====
+const builderSelections = {};
+const builderGroups = document.querySelectorAll('.builder-options');
+const builderSummaryList = document.getElementById('builder-summary-list');
+const builderTotalEl = document.getElementById('builder-total');
+const builderAddBtn = document.getElementById('builder-add-btn');
+
+const variantRice = document.getElementById('variant-rice');
+const variantPasta = document.getElementById('variant-pasta');
+const riceTypeSelect = document.getElementById('rice-type');
+const pastaTypeSelect = document.getElementById('pasta-type');
+
+let portions = 1;
+const portionCountEl = document.getElementById('portion-count');
+document.getElementById('portion-minus').addEventListener('click', () => {
+  if (portions > 1) { portions--; portionCountEl.textContent = portions; updateBuilderSummary(); }
+});
+document.getElementById('portion-plus').addEventListener('click', () => {
+  if (portions < 10) { portions++; portionCountEl.textContent = portions; updateBuilderSummary(); }
+});
+
+builderGroups.forEach(group => {
+  group.addEventListener('click', (e) => {
+    const option = e.target.closest('.builder-option');
+    if (!option) return;
+
+    const groupName = group.dataset.group;
+    const name = option.dataset.name;
+    const price = parseInt(option.dataset.price, 10);
+    const hasVariant = option.dataset.hasVariant === 'true';
+
+    group.querySelectorAll('.builder-option').forEach(o => o.classList.remove('is-selected'));
+    option.classList.add('is-selected');
+
+    if (groupName === 'carbs') {
+      variantRice.style.display = name === 'Rice' ? 'flex' : 'none';
+      variantPasta.style.display = name === 'Pasta' ? 'flex' : 'none';
+    }
+
+    builderSelections[groupName] = {
+      name: name,
+      price: price,
+      variant: hasVariant ? (name === 'Rice' ? riceTypeSelect.value : pastaTypeSelect.value) : null
+    };
+
+    updateBuilderSummary();
+  });
+});
+
+riceTypeSelect.addEventListener('change', () => {
+  if (builderSelections.carbs && builderSelections.carbs.name === 'Rice') {
+    builderSelections.carbs.variant = riceTypeSelect.value;
+    updateBuilderSummary();
+  }
+});
+pastaTypeSelect.addEventListener('change', () => {
+  if (builderSelections.carbs && builderSelections.carbs.name === 'Pasta') {
+    builderSelections.carbs.variant = pastaTypeSelect.value;
+    updateBuilderSummary();
+  }
+});
+
+function updateBuilderSummary() {
+  const keys = Object.keys(builderSelections);
+
+  if (keys.length === 0) {
+    builderSummaryList.innerHTML = '<p class="builder-empty">Start selecting to build your box.</p>';
+    builderTotalEl.textContent = '₦0';
+    builderAddBtn.disabled = true;
+    return;
+  }
+
+  builderSummaryList.innerHTML = keys.map(key => {
+    const item = builderSelections[key];
+    const label = item.variant ? (item.name + ' (' + item.variant + ')') : item.name;
+    return '<div class="builder-summary-row"><span>' + label + '</span><span>₦' + item.price.toLocaleString() + '</span></div>';
+  }).join('');
+
+  const perPortionTotal = keys.reduce((sum, key) => sum + builderSelections[key].price, 0);
+  const grandTotal = perPortionTotal * portions;
+  builderTotalEl.textContent = '₦' + grandTotal.toLocaleString() + ' (' + portions + ' portion' + (portions > 1 ? 's' : '') + ')';
+
+  const carbsPicked = builderSelections.carbs;
+  const needsVariant = carbsPicked && (carbsPicked.name === 'Rice' || carbsPicked.name === 'Pasta');
+  const variantOk = !needsVariant || !!carbsPicked.variant;
+
+  builderAddBtn.disabled = keys.length < 4 || !variantOk;
+}
+
+builderAddBtn.addEventListener('click', () => {
+  const keys = Object.keys(builderSelections);
+  const perPortionTotal = keys.reduce((sum, key) => sum + builderSelections[key].price, 0);
+  const label = keys.map(key => {
+    const item = builderSelections[key];
+    return item.variant ? item.variant : item.name;
+  }).join(' + ');
+  addToCart('Custom Meal Box: ' + label, perPortionTotal, portions);
+  builderAddBtn.textContent = 'Added to Cart ✓';
+  setTimeout(() => { builderAddBtn.textContent = 'Add to Cart'; }, 1500);
+});
+// ===== Delivery Tracker =====
+const trackerStartBtn = document.getElementById('tracker-start-btn');
+const trackerSteps = document.getElementById('tracker-steps');
+const trackerStatusText = document.getElementById('tracker-status-text');
+const trackerStepEls = document.querySelectorAll('.tracker-step');
+
+const trackerLabels = [
+  'Order Confirmed',
+  'Cooking your meal...',
+  'Running quality check...',
+  'Out for delivery...',
+  'Delivered! Enjoy your meal 🎉'
+];
+
+trackerStartBtn.addEventListener('click', () => {
+  trackerStartBtn.disabled = true;
+  trackerStartBtn.textContent = 'Tracking...';
+  trackerSteps.style.display = 'block';
+  trackerStatusText.style.display = 'block';
+
+  trackerStepEls.forEach(step => {
+    step.classList.remove('is-active', 'is-done');
+  });
+
+  let currentStep = 0;
+  advanceTracker(currentStep);
+
+  const interval = setInterval(() => {
+    // Mark previous step done
+    trackerStepEls[currentStep].classList.remove('is-active');
+    trackerStepEls[currentStep].classList.add('is-done');
+
+    currentStep++;
+
+    if (currentStep >= trackerStepEls.length) {
+      clearInterval(interval);
+      trackerStartBtn.disabled = false;
+      trackerStartBtn.textContent = 'Simulate My Order';
+      return;
+    }
+
+    advanceTracker(currentStep);
+  }, 1800);
+});
+
+function advanceTracker(stepIndex) {
+  trackerStepEls[stepIndex].classList.add('is-active');
+  trackerStatusText.textContent = trackerLabels[stepIndex];
+}
+// ===== "What are you craving?" recommender =====
+// Maps each craving to matching meal categories/tags — pure lookup, no real AI needed.
+const cravingMap = {
+  comfort:  { categories: ['nigerian'], tags: [] },
+  healthy:  { categories: ['healthy', 'vegan'], tags: [] },
+  protein:  { categories: [], tags: [] , keywords: ['chicken', 'fish', 'shrimp', 'beef']},
+  quick:    { categories: [], tags: ['Lunch'] },
+  family:   { categories: [], tags: ['Meal Plan', 'Dinner'] },
+  romantic: { categories: ['continental', 'specials'], tags: ['Dinner'] },
+};
+
+const cravingButtons = document.getElementById('craving-buttons');
+const cravingResults = document.getElementById('craving-results');
+
+cravingButtons.addEventListener('click', (e) => {
+  const btn = e.target.closest('.craving-btn');
+  if (!btn) return;
+
+  cravingButtons.querySelectorAll('.craving-btn').forEach(b => b.classList.remove('is-active'));
+  btn.classList.add('is-active');
+
+  const craving = btn.dataset.craving;
+  renderCravingResults(craving);
+
+  cravingResults.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+});
+
+function renderCravingResults(craving) {
+  const rule = cravingMap[craving];
+
+  let matches = meals.filter(meal => {
+    const categoryMatch = rule.categories.length > 0 && rule.categories.includes(meal.category);
+    const tagMatch = rule.tags.length > 0 && rule.tags.includes(meal.tag);
+    const keywordMatch = rule.keywords && rule.keywords.some(kw => meal.name.toLowerCase().includes(kw));
+    return categoryMatch || tagMatch || keywordMatch;
+  });
+
+  // Fallback: if nothing matched, show a small default set instead of an empty grid
+  if (matches.length === 0) {
+    matches = meals.slice(0, 4);
+  }
+
+  cravingResults.innerHTML = matches.map(meal => `
+    <div class="card meal-card" data-id="${meal.id}">
+      <div class="card-img-wrap">
+        <span class="meal-category-tag">${meal.tag}</span>
+        <img src="${meal.img}" alt="${meal.name}" loading="lazy">
+      </div>
+      <div class="card-body">
+        <h4>${meal.name}</h4>
+        <div class="meal-meta-row">
+          <span>${meal.calories} kcal</span>
+          <span>·</span>
+          <span>${meal.prepTime} min</span>
+        </div>
+        <div class="meal-price-row">
+          <span class="meal-price">₦${meal.price.toLocaleString()}</span>
+          <button class="btn btn-primary btn-sm" data-add="${meal.id}">Add</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// Reuse the same Add-to-cart + Quick View behavior for craving results
+cravingResults.addEventListener('click', (e) => {
+  const addBtn = e.target.closest('[data-add]');
+  const card = e.target.closest('.meal-card');
+
+  if (addBtn) {
+    const meal = meals.find(m => m.id === parseInt(addBtn.dataset.add, 10));
+    if (meal) addToCart(meal.name, meal.price, 1);
+    addBtn.textContent = 'Added ✓';
+    setTimeout(() => { addBtn.textContent = 'Add'; }, 1200);
+    return;
+  }
+
+  if (card) {
+    openQuickView(parseInt(card.dataset.id, 10));
+  }
+});
+// ===== Floating "Need Help Choosing?" Assistant =====
+const assistantToggle = document.getElementById('assistant-toggle');
+const assistantPanel = document.getElementById('assistant-panel');
+const assistantClose = document.getElementById('assistant-close');
+
+assistantToggle.addEventListener('click', () => {
+  assistantPanel.classList.toggle('is-open');
+});
+
+assistantClose.addEventListener('click', () => {
+  assistantPanel.classList.remove('is-open');
+});
+
+document.addEventListener('click', (e) => {
+  const widget = document.getElementById('assistant-widget');
+  if (!widget.contains(e.target)) {
+    assistantPanel.classList.remove('is-open');
+  }
+});
+// ===== Standalone Invoice Generator =====
+let siItems = [];
+let siItemCounter = 0;
+
+const siItemsList = document.getElementById('si-items-list');
+const siRunningTotal = document.getElementById('si-running-total');
+
+function siAddItemRow() {
+  siItemCounter++;
+  const rowId = 'si-item-' + siItemCounter;
+  siItems.push({ id: rowId, name: '', price: 0, qty: 1 });
+
+  const row = document.createElement('div');
+  row.className = 'si-item-row';
+  row.id = rowId;
+  row.innerHTML = `
+    <input type="text" placeholder="Item name" data-field="name" data-row="${rowId}">
+    <input type="number" placeholder="Price ₦" min="0" data-field="price" data-row="${rowId}">
+    <input type="number" placeholder="Qty" min="1" value="1" data-field="qty" data-row="${rowId}">
+    <button type="button" class="si-item-remove" data-remove-row="${rowId}">&times;</button>
+  `;
+  siItemsList.appendChild(row);
+}
+
+// Start with one empty row
+siAddItemRow();
+
+document.getElementById('si-add-item-btn').addEventListener('click', siAddItemRow);
+
+siItemsList.addEventListener('input', (e) => {
+  const field = e.target.dataset.field;
+  const rowId = e.target.dataset.row;
+  if (!field || !rowId) return;
+
+  const item = siItems.find(i => i.id === rowId);
+  if (!item) return;
+
+  if (field === 'name') item.name = e.target.value;
+  if (field === 'price') item.price = parseFloat(e.target.value) || 0;
+  if (field === 'qty') item.qty = parseInt(e.target.value) || 1;
+
+  siUpdateTotal();
+});
+
+siItemsList.addEventListener('click', (e) => {
+  const rowId = e.target.dataset.removeRow;
+  if (!rowId) return;
+  siItems = siItems.filter(i => i.id !== rowId);
+  document.getElementById(rowId).remove();
+  siUpdateTotal();
+});
+
+function siUpdateTotal() {
+  const total = siItems.reduce((sum, i) => sum + (i.price * i.qty), 0);
+  siRunningTotal.textContent = `₦${total.toLocaleString()}`;
+}
+
+// ===== Generate invoice =====
+const siInvoiceOverlay = document.getElementById('si-invoice-overlay');
+const siInvoiceContent = document.getElementById('si-invoice-content');
+let siInvoiceText = '';
+
+document.getElementById('si-generate-btn').addEventListener('click', () => {
+  const name = document.getElementById('si-name').value.trim();
+  const phone = document.getElementById('si-phone').value.trim();
+  const address = document.getElementById('si-address').value.trim();
+  const validItems = siItems.filter(i => i.name.trim() !== '' && i.price > 0);
+
+  if (!name || !phone || !address) {
+    alert('Please fill in customer name, phone, and address.');
+    return;
+  }
+  if (validItems.length === 0) {
+    alert('Please add at least one item with a name and price.');
+    return;
+  }
+
+  const invoiceNumber = 'YY-' + Date.now().toString().slice(-8);
+  const invoiceDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  const total = validItems.reduce((sum, i) => sum + (i.price * i.qty), 0);
+
+  siInvoiceContent.innerHTML = `
+    <div class="invoice-header">
+      <h2>Yumly Yours</h2>
+      <p>Victoria Island, Lagos · hello@yumlyyours.com</p>
+    </div>
+    <div class="invoice-meta">
+      <span>Invoice #${invoiceNumber}</span>
+      <span>${invoiceDate}</span>
+    </div>
+    <p style="font-size: var(--fs-body-sm); margin-bottom: var(--space-2);">
+      <strong style="color:var(--color-charcoal);">Billed to:</strong> ${name}<br>
+      ${phone}<br>
+      ${address}
+    </p>
+    <table class="invoice-table">
+      <thead><tr><th>Item</th><th>Qty</th><th>Amount</th></tr></thead>
+      <tbody>
+        ${validItems.map(i => `
+          <tr>
+            <td>${i.name}</td>
+            <td>${i.qty}</td>
+            <td>₦${(i.price * i.qty).toLocaleString()}</td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>
+    <div class="invoice-totals-row invoice-totals-final"><span>Total</span><span>₦${total.toLocaleString()}</span></div>
+    <p class="invoice-footer-note">Thank you for choosing Yumly Yours!</p>
+  `;
+
+  siInvoiceText = `YUMLY YOURS — INVOICE\nInvoice #${invoiceNumber}\nDate: ${invoiceDate}\n\nBilled to: ${name}\n${phone}\n${address}\n\n` +
+    validItems.map(i => `${i.name} x${i.qty} — ₦${(i.price * i.qty).toLocaleString()}`).join('\n') +
+    `\n\nTotal: ₦${total.toLocaleString()}\n\nThank you for choosing Yumly Yours!`;
+
+  siInvoiceOverlay.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+});
+
+document.getElementById('si-invoice-close').addEventListener('click', () => {
+  siInvoiceOverlay.classList.remove('is-open');
+  document.body.style.overflow = '';
+});
+
+document.getElementById('si-print-btn').addEventListener('click', () => {
+  window.print();
+});
+
+document.getElementById('si-download-btn').addEventListener('click', () => {
+  try {
+    const blob = new Blob([siInvoiceText], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'yumly-yours-invoice.txt';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  } catch (err) {
+    const w = window.open('', '_blank');
+    if (w) { w.document.write(`<pre style="font-family:monospace;padding:20px;white-space:pre-wrap;">${siInvoiceText}</pre>`); }
+    else alert(siInvoiceText);
+  }
+});
+</script>
+
+</body>
+</html>
