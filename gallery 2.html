@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery — Yumly Yours</title>
+<meta name="description" content="Explore Yumly Yours through our restaurant, kitchen, meals, private events, and happy customers.">
+<link rel="icon" type="image/png" href="images/favicon.png">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=Manrope:wght@400;500;600&display=swap');
+
+:root {
+  --color-red: #E63946;
+  --color-red-dark: #C6303C;
+  --color-yellow: #F4C430;
+  --color-charcoal: #1F1F1F;
+  --color-warm-white: #FDEFC4;
+  --color-cream: #FFF8F1;
+  --color-text: #1F1F1F;
+  --color-text-muted: #5C5C58;
+  --color-border: #E8E4DC;
+  --color-surface: #FFFFFF;
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Manrope', sans-serif;
+  --fs-h1: clamp(2.5rem, 5vw, 4.5rem);
+  --fs-h2: clamp(2rem, 3.5vw, 3rem);
+  --fs-h3: clamp(1.5rem, 2.5vw, 2rem);
+  --fs-body-lg: 1.125rem;
+  --fs-body: 1rem;
+  --fs-body-sm: 0.875rem;
+  --fs-caption: 0.75rem;
+  --lh-tight: 1.15; --lh-normal: 1.5; --lh-relaxed: 1.7;
+  --space-1: 8px; --space-2: 16px; --space-3: 24px; --space-4: 32px;
+  --space-5: 40px; --space-6: 48px; --space-8: 64px; --space-10: 80px;
+  --radius-sm: 8px; --radius-md: 16px; --radius-lg: 24px; --radius-full: 999px;
+  --shadow-sm: 0 2px 8px rgba(31,31,31,0.06);
+  --shadow-md: 0 8px 24px rgba(31,31,31,0.08);
+  --shadow-lg: 0 16px 48px rgba(31,31,31,0.12);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 0.2s var(--ease-out);
+  --transition-med: 0.4s var(--ease-out);
+  --max-width: 1280px;
+  --nav-height: 80px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: var(--nav-height); }
+body { font-family: var(--font-body); color: var(--color-text); background: var(--color-warm-white); -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+:focus-visible { outline: 2px solid var(--color-red); outline-offset: 3px; }
+
+h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height: var(--lh-tight); color: var(--color-charcoal); }
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+p { line-height: var(--lh-relaxed); color: var(--color-text-muted); }
+
+.eyebrow { display: inline-block; font-family: var(--font-heading); font-size: var(--fs-caption); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-red); margin-bottom: var(--space-2); }
+.container { width: 100%; max-width: var(--max-width); margin-inline: auto; padding-inline: var(--space-3); }
+.section { padding-block: var(--space-10); }
+.section-lede { font-size: var(--fs-body-lg); max-width: 560px; margin-inline: auto; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--font-heading); font-weight: 500; font-size: var(--fs-body); padding: 14px 28px; border-radius: var(--radius-full); transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast); white-space: nowrap; }
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { background: var(--color-red); color: var(--color-warm-white); box-shadow: var(--shadow-sm); }
+.btn-primary:hover { background: var(--color-red-dark); box-shadow: var(--shadow-md); }
+
+/* Navbar */
+.navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--nav-height); display: flex; align-items: center; background: rgba(250,250,248,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-border); box-shadow: var(--shadow-sm); }
+.navbar-inner { width: 100%; max-width: var(--max-width); margin-inline: auto; padding-inline: var(--space-3); display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-family: var(--font-heading); font-weight: 600; font-size: 1.25rem; color: var(--color-charcoal); display: flex; align-items: center; gap: 8px; }
+.nav-logo img { height: 32px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: var(--space-4); }
+.nav-links a { font-size: var(--fs-body-sm); font-weight: 500; color: var(--color-text); position: relative; padding-block: 4px; }
+.nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--color-red); transition: width var(--transition-fast); }
+.nav-links a:hover::after, .nav-links a[aria-current="page"]::after { width: 100%; }
+.nav-actions { display: flex; align-items: center; gap: var(--space-2); }
+.nav-toggle { display: none; flex-direction: column; gap: 5px; padding: 8px; }
+.nav-toggle span { width: 22px; height: 2px; background: var(--color-charcoal); border-radius: 2px; transition: transform var(--transition-fast), opacity var(--transition-fast); }
+
+@media (max-width: 900px) {
+  .nav-links { position: fixed; top: var(--nav-height); left: 0; right: 0; background: var(--color-warm-white); flex-direction: column; align-items: flex-start; padding: var(--space-3); gap: var(--space-3); border-bottom: 1px solid var(--color-border); transform: translateY(-150%); transition: transform var(--transition-med); }
+  .nav-links.is-open { transform: translateY(0); }
+  .nav-toggle { display: flex; }
+}
+
+/* Footer */
+.footer { background: var(--color-charcoal); color: var(--color-warm-white); padding-block: var(--space-8) var(--space-4); margin-top: var(--space-10); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: var(--space-4); padding-bottom: var(--space-6); border-bottom: 1px solid rgba(255,255,255,0.1); }
+.footer h4 { color: var(--color-warm-white); font-size: var(--fs-body); margin-bottom: var(--space-2); }
+.footer p, .footer a { color: rgba(255,255,255,0.65); font-size: var(--fs-body-sm); }
+.footer-links li { margin-bottom: 8px; }
+.footer-links a:hover { color: var(--color-yellow); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: var(--space-3); font-size: var(--fs-caption); color: rgba(255,255,255,0.5); flex-wrap: wrap; gap: var(--space-2); }
+@media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+
+/* ==========================================================================
+   GALLERY PAGE — SPECIFIC STYLES
+   ========================================================================== */
+.gallery-hero {
+  padding-top: calc(var(--nav-height) + var(--space-8));
+  padding-bottom: var(--space-6);
+  background: var(--color-cream);
+  text-align: center;
+}
+.gallery-hero h1 { font-size: var(--fs-h2); margin-bottom: var(--space-2); }
+
+/* Filter tabs (sticky, reused pattern from menu page) */
+.gallery-controls {
+  position: sticky;
+  top: var(--nav-height);
+  z-index: 500;
+  background: rgba(250,250,248,0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-border);
+  padding-block: var(--space-2);
+}
+.filter-tabs { display: flex; gap: 8px; overflow-x: auto; justify-content: center; padding-bottom: 4px; scrollbar-width: none; }
+.filter-tabs::-webkit-scrollbar { display: none; }
+.filter-tab { flex-shrink: 0; padding: 8px 18px; border-radius: var(--radius-full); border: 1.5px solid var(--color-border); font-size: var(--fs-body-sm); font-weight: 500; color: var(--color-text-muted); transition: all var(--transition-fast); }
+.filter-tab:hover { border-color: var(--color-charcoal); color: var(--color-charcoal); }
+.filter-tab.is-active { background: var(--color-red); border-color: var(--color-red); color: var(--color-warm-white); }
+
+/* Masonry grid using CSS columns */
+.masonry {
+  column-count: 4;
+  column-gap: var(--space-2);
+  margin-top: var(--space-6);
+}
+@media (max-width: 1024px) { .masonry { column-count: 3; } }
+@media (max-width: 768px) { .masonry { column-count: 2; } }
+@media (max-width: 480px) { .masonry { column-count: 1; } }
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: var(--space-2);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+.masonry-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.masonry-item img { width: 100%; display: block; transition: transform var(--transition-med); }
+.masonry-item:hover img { transform: scale(1.05); }
+
+.masonry-item-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(31,31,31,0.75) 0%, transparent 50%);
+  display: flex; align-items: flex-end;
+  padding: var(--space-2);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+.masonry-item:hover .masonry-item-overlay { opacity: 1; }
+.masonry-item-overlay p { color: var(--color-warm-white); font-size: var(--fs-body-sm); font-weight: 500; }
+
+.gallery-empty { text-align: center; padding: var(--space-8) 0; }
+
+/* Lightbox */
+.lightbox-overlay {
+  position: fixed; inset: 0; z-index: 3000;
+  background: rgba(0,0,0,0.92);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity var(--transition-fast);
+}
+.lightbox-overlay.is-open { opacity: 1; pointer-events: all; }
+
+.lightbox-img-wrap {
+  max-width: 90vw; max-height: 85vh;
+  display: flex; flex-direction: column; align-items: center;
+}
+.lightbox-img-wrap img {
+  max-width: 90vw; max-height: 75vh;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+}
+.lightbox-caption { color: var(--color-warm-white); text-align: center; margin-top: var(--space-2); font-size: var(--fs-body-sm); }
+
+.lightbox-close, .lightbox-prev, .lightbox-next {
+  position: fixed;
+  color: var(--color-warm-white);
+  background: rgba(255,255,255,0.1);
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.25rem;
+  transition: background var(--transition-fast);
+}
+.lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover { background: rgba(255,255,255,0.25); }
+.lightbox-close { top: var(--space-3); right: var(--space-3); }
+.lightbox-prev { left: var(--space-3); top: 50%; transform: translateY(-50%); }
+.lightbox-next { right: var(--space-3); top: 50%; transform: translateY(-50%); }
+
+@media (max-width: 640px) {
+  .lightbox-prev, .lightbox-next { width: 38px; height: 38px; }
+}
+/* Floating Assistant */
+.assistant-widget {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1500;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.assistant-toggle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--color-red);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s var(--ease-out);
+}
+.assistant-toggle:hover { transform: scale(1.08); }
+.assistant-toggle-icon { font-size: 1.5rem; }
+
+.assistant-panel {
+  width: 300px;
+  max-width: calc(100vw - 48px);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-3);
+  transform: translateY(12px) scale(0.96);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.25s var(--ease-out), opacity 0.25s var(--ease-out);
+}
+.assistant-panel.is-open {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.assistant-panel-header {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-bottom: var(--space-2);
+  position: relative;
+}
+.assistant-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--color-cream);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.assistant-panel-header h4 { font-size: var(--fs-body); margin-bottom: 2px; }
+.assistant-panel-header p { font-size: var(--fs-body-sm); line-height: 1.4; }
+.assistant-close {
+  position: absolute;
+  top: -4px; right: -4px;
+  width: 24px; height: 24px;
+  font-size: 16px;
+  color: var(--color-text-muted);
+}
+
+.assistant-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.assistant-option {
+  display: block;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--color-cream);
+  font-size: var(--fs-body-sm);
+  font-weight: 500;
+  color: var(--color-charcoal);
+  transition: background 0.2s var(--ease-out);
+}
+.assistant-option:hover { background: var(--color-border); }
+
+@media (max-width: 480px) {
+  .assistant-widget { bottom: 16px; right: 16px; }
+  .assistant-toggle { width: 52px; height: 52px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<header class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="images/logo.png" alt="Yumly Yours logo">
+      Yumly Yours
+    </a>
+    <nav id="nav-links" class="nav-links" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="about.html">About</a>
+      <a href="reservations.html">Reservations</a>
+      <a href="private-chef.html">Private Chef</a>
+      <a href="gallery.html" aria-current="page">Gallery</a>
+      <a href="contact.html">Contact</a>
+ <a href="corporate-catering.html">Corporate catering</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="menu.html" class="btn btn-primary">Order Now</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== GALLERY HERO ===== -->
+<section class="gallery-hero">
+  <div class="container">
+    <p class="eyebrow">Take a Look Inside</p>
+    <h1>Our Gallery</h1>
+    <p class="section-lede">From the kitchen to your table — a look at how Yumly Yours comes together.</p>
+  </div>
+</section>
+
+<!-- ===== FILTER BAR ===== -->
+<div class="gallery-controls">
+  <div class="container">
+    <div class="filter-tabs" id="filter-tabs">
+      <button class="filter-tab is-active" data-category="all">All</button>
+      <button class="filter-tab" data-category="restaurant">Restaurant</button>
+      <button class="filter-tab" data-category="kitchen">Kitchen</button>
+      <button class="filter-tab" data-category="meals">Meals</button>
+      <button class="filter-tab" data-category="events">Private Events</button>
+      <button class="filter-tab" data-category="chefs">Chef Experiences</button>
+      <button class="filter-tab" data-category="customers">Happy Customers</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MASONRY GALLERY ===== -->
+<section class="section" style="padding-top: var(--space-4);">
+  <div class="container">
+    <div class="masonry" id="masonry-grid"></div>
+  </div>
+</section>
+
+<!-- ===== LIGHTBOX ===== -->
+<div class="lightbox-overlay" id="lightbox-overlay">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
+  <button class="lightbox-prev" id="lightbox-prev" aria-label="Previous image">&#8249;</button>
+  <div class="lightbox-img-wrap">
+    <img id="lightbox-img" src="" alt="">
+    <p class="lightbox-caption" id="lightbox-caption"></p>
+  </div>
+  <button class="lightbox-next" id="lightbox-next" aria-label="Next image">&#8250;</button>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>Yumly Yours</h4>
+        <p>Meals, Made For You. Premium dining, meal subscriptions, and private chefs — Victoria Island, Lagos.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul class="footer-links">
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="private-chef.html">Private Chef</a></li>
+          <li><a href="reservations.html">Reservations</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul class="footer-links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="corporate-catering.html">Corporate Catering</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li>Victoria Island, Lagos</li>
+          <li><a href="tel:+2340000000000">+234 913 0255 872</a></li>
+          <li><a href="mailto:hello@yumlyyours.com">hello@yumlyyours.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Yumly Yours. All rights reserved.</p>
+      <p>Privacy Policy · Terms of Service</p>
+    </div>
+  </div>
+</footer>
+<!-- ===== FLOATING ASSISTANT ===== -->
+<div class="assistant-widget" id="assistant-widget">
+  <div class="assistant-panel" id="assistant-panel">
+    <div class="assistant-panel-header">
+      <div class="assistant-avatar">👋</div>
+      <div>
+        <h4>Hi there!</h4>
+        <p>Need meals for the week? I can help you choose in under a minute.</p>
+      </div>
+      <button class="assistant-close" id="assistant-close" aria-label="Close">&times;</button>
+    </div>
+
+    <div class="assistant-options">
+      <a href="menu.html" class="assistant-option">🍽️ Browse the Menu</a>
+      <a href="index.html#quiz-open-btn" class="assistant-option" id="assistant-quiz-link">🎯 Take the 60-Second Quiz</a>
+      <a href="private-chef.html" class="assistant-option">🧑‍🍳 Book a Private Chef</a>
+      <a href="contact.html" class="assistant-option">💬 Talk to a Human</a>
+    </div>
+  </div>
+
+  <button class="assistant-toggle" id="assistant-toggle" aria-label="Open help assistant">
+    <span class="assistant-toggle-icon">💬</span>
+  </button>
+</div>
+
+<script>
+// ===== Mobile nav toggle =====
+const navToggle = document.getElementById('nav-toggle');
+const navLinks = document.getElementById('nav-links');
+navToggle.addEventListener('click', () => {
+  const isOpen = navLinks.classList.toggle('is-open');
+  navToggle.setAttribute('aria-expanded', isOpen);
+});
+
+// ===== Gallery data (swap img paths with your real photos) =====
+// Tip: vary the "h" value slightly so the masonry layout looks natural.
+const galleryItems = [
+  { id: 1, category: 'restaurant', img: 'images/main-dining-1.jpg', h: 420, caption: 'Main dining hall' },
+  { id: 2, category: 'kitchen', img: 'images/gallery-kitchen-1.jpg', h: 320, caption: 'Chefs at work' },
+  { id: 3, category: 'meals', img: 'images/gallery-meal-1.jpg', h: 380, caption: 'Jollof rice plating' },
+  { id: 4, category: 'events', img: 'images/gallery-event-1.jpg', h: 500, caption: 'Corporate lunch event' },
+  { id: 5, category: 'chefs', img: 'images/gallery-chef-hilda.jpg', h: 340, caption: 'Chef Hilda in the kitchen' },
+  { id: 6, category: 'customers', img: 'images/gallery-customer-1.jpg', h: 400, caption: 'Guests enjoying dinner' },
+  { id: 7, category: 'meals', img: 'images/gallery-meal-2.jpg', h: 300, caption: 'Seafood okra soup' },
+  { id: 8, category: 'restaurant', img: 'images/gallery-restaurant-2.jpg', h: 460, caption: 'Outdoor seating area' },
+  { id: 9, category: 'kitchen', img: 'images/gallery-kitchen-2.jpg', h: 360, caption: 'Fresh ingredients prep' },
+  { id: 10, category: 'events', img: 'images/gallery-event-2.jpg', h: 420, caption: 'Private birthday dinner' },
+  { id: 11, category: 'meals', img: 'images/gallery-meal-3.jpg', h: 340, caption: 'medium cooked Steak' },
+  { id: 12, category: 'customers', img: 'images/gallery-customer-2.jpg', h: 380, caption: 'Regulars at Yumly Yours' },
+  { id: 13, category: 'chefs', img: 'images/gallery-chef-gozie.jpg', h: 300, caption: 'Chef Gozie plating a dish' },
+  { id: 14, category: 'restaurant', img: 'images/gallery-restaurant-3.jpg', h: 400, caption: 'Private dining room' },
+  { id: 15, category: 'events', img: 'images/gallery-event-3.jpg', h: 440, caption: 'Office catering setup' },
+  { id: 16, category: 'meals', img: 'images/gallery-meal-4.jpg', h: 320, caption: 'Pasta alfredo & shrimp' },
+];
+
+let activeCategory = 'all';
+let filteredItems = [...galleryItems];
+let currentLightboxIndex = 0;
+
+const masonryGrid = document.getElementById('masonry-grid');
+const filterTabs = document.getElementById('filter-tabs');
+
+// ===== Render gallery =====
+function renderGallery() {
+  filteredItems = activeCategory === 'all'
+    ? galleryItems
+    : galleryItems.filter(item => item.category === activeCategory);
+
+  if (filteredItems.length === 0) {
+    masonryGrid.innerHTML = `<div class="gallery-empty"><h4>No images in this category yet</h4></div>`;
+    return;
+  }
+
+  masonryGrid.innerHTML = filteredItems.map((item, index) => `
+    <div class="masonry-item" data-index="${index}">
+      <img src="${item.img}" alt="${item.caption}" style="height:${item.h}px; object-fit:cover;" loading="lazy">
+      <div class="masonry-item-overlay"><p>${item.caption}</p></div>
+    </div>
+  `).join('');
+}
+
+renderGallery();
+
+// ===== Filter tab clicks =====
+filterTabs.addEventListener('click', (e) => {
+  const tab = e.target.closest('.filter-tab');
+  if (!tab) return;
+  filterTabs.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('is-active'));
+  tab.classList.add('is-active');
+  activeCategory = tab.dataset.category;
+  renderGallery();
+});
+
+// ===== Lightbox =====
+const lightboxOverlay = document.getElementById('lightbox-overlay');
+const lightboxImg = document.getElementById('lightbox-img');
+const lightboxCaption = document.getElementById('lightbox-caption');
+
+function openLightbox(index) {
+  currentLightboxIndex = index;
+  updateLightboxImage();
+  lightboxOverlay.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+}
+
+function updateLightboxImage() {
+  const item = filteredItems[currentLightboxIndex];
+  lightboxImg.src = item.img;
+  lightboxImg.alt = item.caption;
+  lightboxCaption.textContent = item.caption;
+}
+
+function closeLightbox() {
+  lightboxOverlay.classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+
+function showNext() {
+  currentLightboxIndex = (currentLightboxIndex + 1) % filteredItems.length;
+  updateLightboxImage();
+}
+
+function showPrev() {
+  currentLightboxIndex = (currentLightboxIndex - 1 + filteredItems.length) % filteredItems.length;
+  updateLightboxImage();
+}
+
+masonryGrid.addEventListener('click', (e) => {
+  const item = e.target.closest('.masonry-item');
+  if (item) openLightbox(parseInt(item.dataset.index, 10));
+});
+
+document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+document.getElementById('lightbox-next').addEventListener('click', showNext);
+document.getElementById('lightbox-prev').addEventListener('click', showPrev);
+
+lightboxOverlay.addEventListener('click', (e) => {
+  if (e.target === lightboxOverlay) closeLightbox();
+});
+
+document.addEventListener('keydown', (e) => {
+  if (!lightboxOverlay.classList.contains('is-open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowRight') showNext();
+  if (e.key === 'ArrowLeft') showPrev();
+});
+// ===== Floating "Need Help Choosing?" Assistant =====
+const assistantToggle = document.getElementById('assistant-toggle');
+const assistantPanel = document.getElementById('assistant-panel');
+const assistantClose = document.getElementById('assistant-close');
+
+assistantToggle.addEventListener('click', () => {
+  assistantPanel.classList.toggle('is-open');
+});
+
+assistantClose.addEventListener('click', () => {
+  assistantPanel.classList.remove('is-open');
+});
+
+document.addEventListener('click', (e) => {
+  const widget = document.getElementById('assistant-widget');
+  if (!widget.contains(e.target)) {
+    assistantPanel.classList.remove('is-open');
+  }
+});
+</script>
+
+</body>
+</html>

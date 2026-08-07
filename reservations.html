@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reservations — Yumly Yours</title>
+<meta name="description" content="Book a table at Yumly Yours — indoor, outdoor, or private dining in Victoria Island, Lagos.">
+<link rel="icon" type="image/png" href="images/favicon.png">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=Manrope:wght@400;500;600&display=swap');
+
+:root {
+  --color-red: #E63946;
+  --color-red-dark: #C6303C;
+  --color-yellow: #F4C430;
+  --color-charcoal: #1F1F1F;
+  --color-warm-white: #FDEFC4;
+  --color-cream: #FFF8F1;
+  --color-text: #1F1F1F;
+  --color-text-muted: #5C5C58;
+  --color-border: #E8E4DC;
+  --color-surface: #FFFFFF;
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Manrope', sans-serif;
+  --fs-h1: clamp(2.5rem, 5vw, 4.5rem);
+  --fs-h2: clamp(2rem, 3.5vw, 3rem);
+  --fs-h3: clamp(1.5rem, 2.5vw, 2rem);
+  --fs-body-lg: 1.125rem;
+  --fs-body: 1rem;
+  --fs-body-sm: 0.875rem;
+  --fs-caption: 0.75rem;
+  --lh-tight: 1.15; --lh-normal: 1.5; --lh-relaxed: 1.7;
+  --space-1: 8px; --space-2: 16px; --space-3: 24px; --space-4: 32px;
+  --space-5: 40px; --space-6: 48px; --space-8: 64px; --space-10: 80px;
+  --radius-sm: 8px; --radius-md: 16px; --radius-lg: 24px; --radius-full: 999px;
+  --shadow-sm: 0 2px 8px rgba(31,31,31,0.06);
+  --shadow-md: 0 8px 24px rgba(31,31,31,0.08);
+  --shadow-lg: 0 16px 48px rgba(31,31,31,0.12);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 0.2s var(--ease-out);
+  --transition-med: 0.4s var(--ease-out);
+  --max-width: 1280px;
+  --nav-height: 80px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: var(--nav-height); }
+body { font-family: var(--font-body); color: var(--color-text); background: var(--color-warm-white); -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+:focus-visible { outline: 2px solid var(--color-red); outline-offset: 3px; }
+
+h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height: var(--lh-tight); color: var(--color-charcoal); }
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+p { line-height: var(--lh-relaxed); color: var(--color-text-muted); }
+
+.eyebrow { display: inline-block; font-family: var(--font-heading); font-size: var(--fs-caption); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-red); margin-bottom: var(--space-2); }
+.container { width: 100%; max-width: var(--max-width); margin-inline: auto; padding-inline: var(--space-3); }
+.section { padding-block: var(--space-10); }
+.section-header { margin-bottom: var(--space-6); text-align: center; }
+.section-lede { font-size: var(--fs-body-lg); max-width: 560px; margin-inline: auto; }
+.grid { display: grid; gap: var(--space-3); }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--font-heading); font-weight: 500; font-size: var(--fs-body); padding: 14px 28px; border-radius: var(--radius-full); transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast); white-space: nowrap; }
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { background: var(--color-red); color: var(--color-warm-white); box-shadow: var(--shadow-sm); }
+.btn-primary:hover { background: var(--color-red-dark); box-shadow: var(--shadow-md); }
+.btn-ghost { background: transparent; color: var(--color-charcoal); border: 1.5px solid var(--color-border); }
+.btn-ghost:hover { border-color: var(--color-charcoal); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+.card { background: var(--color-surface); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); overflow: hidden; }
+
+/* Navbar */
+.navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--nav-height); display: flex; align-items: center; background: rgba(250,250,248,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-border); box-shadow: var(--shadow-sm); }
+.navbar-inner { width: 100%; max-width: var(--max-width); margin-inline: auto; padding-inline: var(--space-3); display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-family: var(--font-heading); font-weight: 600; font-size: 1.25rem; color: var(--color-charcoal); display: flex; align-items: center; gap: 8px; }
+.nav-logo img { height: 32px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: var(--space-4); }
+.nav-links a { font-size: var(--fs-body-sm); font-weight: 500; color: var(--color-text); position: relative; padding-block: 4px; }
+.nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--color-red); transition: width var(--transition-fast); }
+.nav-links a:hover::after, .nav-links a[aria-current="page"]::after { width: 100%; }
+.nav-actions { display: flex; align-items: center; gap: var(--space-2); }
+.nav-toggle { display: none; flex-direction: column; gap: 5px; padding: 8px; }
+.nav-toggle span { width: 22px; height: 2px; background: var(--color-charcoal); border-radius: 2px; transition: transform var(--transition-fast), opacity var(--transition-fast); }
+
+@media (max-width: 900px) {
+  .nav-links { position: fixed; top: var(--nav-height); left: 0; right: 0; background: var(--color-warm-white); flex-direction: column; align-items: flex-start; padding: var(--space-3); gap: var(--space-3); border-bottom: 1px solid var(--color-border); transform: translateY(-150%); transition: transform var(--transition-med); }
+  .nav-links.is-open { transform: translateY(0); }
+  .nav-toggle { display: flex; }
+}
+
+/* Footer */
+.footer { background: var(--color-charcoal); color: var(--color-warm-white); padding-block: var(--space-8) var(--space-4); margin-top: var(--space-10); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: var(--space-4); padding-bottom: var(--space-6); border-bottom: 1px solid rgba(255,255,255,0.1); }
+.footer h4 { color: var(--color-warm-white); font-size: var(--fs-body); margin-bottom: var(--space-2); }
+.footer p, .footer a { color: rgba(255,255,255,0.65); font-size: var(--fs-body-sm); }
+.footer-links li { margin-bottom: 8px; }
+.footer-links a:hover { color: var(--color-yellow); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: var(--space-3); font-size: var(--fs-caption); color: rgba(255,255,255,0.5); flex-wrap: wrap; gap: var(--space-2); }
+@media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+
+/* ==========================================================================
+   RESERVATIONS PAGE — SPECIFIC STYLES
+   ========================================================================== */
+.res-hero {
+  padding-top: calc(var(--nav-height) + var(--space-8));
+  padding-bottom: var(--space-6);
+  background: var(--color-cream);
+  text-align: center;
+}
+.res-hero h1 { font-size: var(--fs-h2); margin-bottom: var(--space-2); }
+
+.res-layout {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: var(--space-5);
+  align-items: start;
+}
+@media (max-width: 900px) { .res-layout { grid-template-columns: 1fr; } }
+
+/* Form */
+.res-form { padding: var(--space-4); }
+.form-group { margin-bottom: var(--space-3); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2); }
+@media (max-width: 500px) { .form-row { grid-template-columns: 1fr; } }
+
+.form-group label {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: var(--fs-body-sm);
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: var(--color-charcoal);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 13px 16px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--color-border);
+  background: var(--color-warm-white);
+  font-size: var(--fs-body);
+  transition: border-color var(--transition-fast);
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--color-red);
+  outline: none;
+}
+.form-group textarea { resize: vertical; min-height: 100px; }
+
+.form-group.has-error input,
+.form-group.has-error select {
+  border-color: var(--color-red);
+  background: #FDF1F1;
+}
+.error-message {
+  display: none;
+  color: var(--color-red);
+  font-size: var(--fs-caption);
+  margin-top: 6px;
+}
+.form-group.has-error .error-message { display: block; }
+
+/* Seating type selector */
+.seating-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+@media (max-width: 500px) { .seating-options { grid-template-columns: 1fr; } }
+
+.seating-option {
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2);
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.seating-option:hover { border-color: var(--color-charcoal); }
+.seating-option.is-selected { border-color: var(--color-red); background: #FDF1F1; }
+.seating-option .icon { font-size: 1.5rem; margin-bottom: 6px; }
+.seating-option p { font-size: var(--fs-body-sm); color: var(--color-charcoal); font-weight: 500; }
+
+/* Sidebar info */
+.res-info-card { padding: var(--space-4); }
+.res-info-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius-md); margin-bottom: var(--space-3); }
+.info-row { display: flex; gap: var(--space-2); padding-block: var(--space-2); border-top: 1px solid var(--color-border); }
+.info-row:first-of-type { border-top: none; }
+.info-row .icon { font-size: 1.25rem; }
+.info-row h4 { font-size: var(--fs-body); margin-bottom: 2px; }
+.info-row p { font-size: var(--fs-body-sm); }
+
+/* Confirmation modal */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 2000;
+  background: rgba(31,31,31,0.6);
+  display: flex; align-items: center; justify-content: center;
+  padding: var(--space-3);
+  opacity: 0; pointer-events: none;
+  transition: opacity var(--transition-fast);
+}
+.modal-overlay.is-open { opacity: 1; pointer-events: all; }
+.modal {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  max-width: 440px;
+  width: 100%;
+  padding: var(--space-5) var(--space-4);
+  text-align: center;
+  transform: translateY(20px) scale(0.98);
+  transition: transform var(--transition-med);
+}
+.modal-overlay.is-open .modal { transform: translateY(0) scale(1); }
+.modal-icon {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: #E8F5E9; color: #2E7D32;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem; margin-inline: auto; margin-bottom: var(--space-3);
+}
+.modal-summary {
+  text-align: left;
+  background: var(--color-cream);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2);
+  margin-block: var(--space-3);
+  font-size: var(--fs-body-sm);
+}
+.modal-summary div { display: flex; justify-content: space-between; padding-block: 4px; }
+.modal-summary strong { color: var(--color-charcoal); }
+/* Floating Assistant */
+.assistant-widget {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1500;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.assistant-toggle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--color-red);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s var(--ease-out);
+}
+.assistant-toggle:hover { transform: scale(1.08); }
+.assistant-toggle-icon { font-size: 1.5rem; }
+
+.assistant-panel {
+  width: 300px;
+  max-width: calc(100vw - 48px);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-3);
+  transform: translateY(12px) scale(0.96);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.25s var(--ease-out), opacity 0.25s var(--ease-out);
+}
+.assistant-panel.is-open {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.assistant-panel-header {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-bottom: var(--space-2);
+  position: relative;
+}
+.assistant-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--color-cream);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.assistant-panel-header h4 { font-size: var(--fs-body); margin-bottom: 2px; }
+.assistant-panel-header p { font-size: var(--fs-body-sm); line-height: 1.4; }
+.assistant-close {
+  position: absolute;
+  top: -4px; right: -4px;
+  width: 24px; height: 24px;
+  font-size: 16px;
+  color: var(--color-text-muted);
+}
+
+.assistant-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.assistant-option {
+  display: block;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--color-cream);
+  font-size: var(--fs-body-sm);
+  font-weight: 500;
+  color: var(--color-charcoal);
+  transition: background 0.2s var(--ease-out);
+}
+.assistant-option:hover { background: var(--color-border); }
+
+@media (max-width: 480px) {
+  .assistant-widget { bottom: 16px; right: 16px; }
+  .assistant-toggle { width: 52px; height: 52px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<header class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="images/logo.png" alt="Yumly Yours logo">
+      Yumly Yours
+    </a>
+    <nav id="nav-links" class="nav-links" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="about.html">About</a>
+      <a href="reservations.html" aria-current="page">Reservations</a>
+      <a href="private-chef.html">Private Chef</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+  <a href="corporate-catering.html">Corporate catering</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="menu.html" class="btn btn-primary">Order Now</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== RESERVATIONS HERO ===== -->
+<section class="res-hero">
+  <div class="container">
+    <p class="eyebrow">Book a Table</p>
+    <h1>Reserve Your Spot</h1>
+    <p class="section-lede">Indoor, outdoor, or private dining — tell us when, and we'll have your table ready.</p>
+  </div>
+</section>
+
+<!-- ===== RESERVATION FORM ===== -->
+<section class="section" style="padding-top: var(--space-6);">
+  <div class="container res-layout">
+
+    <!-- Form -->
+    <form class="card res-form" id="reservation-form" novalidate>
+      <h3 style="margin-bottom: var(--space-3);">Reservation Details</h3>
+
+      <div class="form-row">
+        <div class="form-group" id="group-name">
+          <label for="res-name">Full Name</label>
+          <input type="text" id="res-name" name="name" placeholder="Your full name">
+          <p class="error-message">Please enter your name.</p>
+        </div>
+        <div class="form-group" id="group-phone">
+          <label for="res-phone">Phone Number</label>
+          <input type="tel" id="res-phone" name="phone" placeholder="080X XXX XXXX">
+          <p class="error-message">Enter a valid phone number.</p>
+        </div>
+      </div>
+
+      <div class="form-group" id="group-email">
+        <label for="res-email">Email Address</label>
+        <input type="email" id="res-email" name="email" placeholder="you@example.com">
+        <p class="error-message">Enter a valid email address.</p>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group" id="group-date">
+          <label for="res-date">Date</label>
+          <input type="date" id="res-date" name="date">
+          <p class="error-message">Please select a valid future date.</p>
+        </div>
+        <div class="form-group" id="group-time">
+          <label for="res-time">Time</label>
+          <input type="time" id="res-time" name="time">
+          <p class="error-message">Please select a time.</p>
+        </div>
+      </div>
+
+      <div class="form-group" id="group-guests">
+        <label for="res-guests">Number of Guests</label>
+        <select id="res-guests" name="guests">
+          <option value="">Select guests</option>
+          <option value="1">1 Guest</option>
+          <option value="2">2 Guests</option>
+          <option value="3">3 Guests</option>
+          <option value="4">4 Guests</option>
+          <option value="5">5 Guests</option>
+          <option value="6+">6+ Guests</option>
+        </select>
+        <p class="error-message">Please select number of guests.</p>
+      </div>
+
+      <div class="form-group" id="group-seating">
+        <label>Seating Preference</label>
+        <div class="seating-options">
+          <div class="seating-option" data-seating="Indoor">
+            <div class="icon">🏠</div>
+            <p>Indoor</p>
+          </div>
+          <div class="seating-option" data-seating="Outdoor">
+            <div class="icon">🌤️</div>
+            <p>Outdoor</p>
+          </div>
+          <div class="seating-option" data-seating="Private Dining">
+            <div class="icon">🔒</div>
+            <p>Private Dining</p>
+          </div>
+        </div>
+        <p class="error-message">Please choose a seating type.</p>
+      </div>
+
+      <div class="form-group">
+        <label for="res-requests">Special Requests (optional)</label>
+        <textarea id="res-requests" name="requests" placeholder="Allergies, celebrations, seating preferences..."></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="width:100%;">Confirm Reservation</button>
+    </form>
+
+    <!-- Sidebar -->
+    <div class="card res-info-card">
+      <img src="images/reservations-dining.jpg" alt="Yumly Yours dining room">
+      <div class="info-row">
+        <span class="icon">📍</span>
+        <div><h4>Location</h4><p>Victoria Island, Lagos</p></div>
+      </div>
+      <div class="info-row">
+        <span class="icon">🕐</span>
+        <div><h4>Hours</h4><p>Mon–Sun, 9:00 AM – 10:00 PM</p></div>
+      </div>
+      <div class="info-row">
+        <span class="icon">📞</span>
+        <div><h4>Call Us</h4><p>+234 913 0255 872</p></div>
+      </div>
+      <div class="info-row">
+        <span class="icon">👥</span>
+        <div><h4>Group of 10+?</h4><p>Contact us directly for private event bookings.</p></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== CONFIRMATION MODAL ===== -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <div class="modal-icon">✓</div>
+    <h3>Reservation Confirmed</h3>
+    <p>We've received your booking. A confirmation will be sent to your email shortly.</p>
+    <div class="modal-summary" id="modal-summary"></div>
+    <button class="btn btn-primary" id="modal-close-btn" style="width:100%;">Done</button>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>Yumly Yours</h4>
+        <p>Meals, Made For You. Premium dining, meal subscriptions, and private chefs — Victoria Island, Lagos.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul class="footer-links">
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="private-chef.html">Private Chef</a></li>
+          <li><a href="reservations.html">Reservations</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul class="footer-links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="corporate-catering.html">Corporate Catering</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li>Victoria Island, Lagos</li>
+          <li><a href="tel:+2340000000000">+234 913 0255 872</a></li>
+          <li><a href="mailto:hello@yumlyyours.com">hello@yumlyyours.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Yumly Yours. All rights reserved.</p>
+      <p>Privacy Policy · Terms of Service</p>
+    </div>
+  </div>
+</footer>
+<!-- ===== FLOATING ASSISTANT ===== -->
+<div class="assistant-widget" id="assistant-widget">
+  <div class="assistant-panel" id="assistant-panel">
+    <div class="assistant-panel-header">
+      <div class="assistant-avatar">👋</div>
+      <div>
+        <h4>Hi there!</h4>
+        <p>Need meals for the week? I can help you choose in under a minute.</p>
+      </div>
+      <button class="assistant-close" id="assistant-close" aria-label="Close">&times;</button>
+    </div>
+
+    <div class="assistant-options">
+      <a href="menu.html" class="assistant-option">🍽️ Browse the Menu</a>
+      <a href="index.html#quiz-open-btn" class="assistant-option" id="assistant-quiz-link">🎯 Take the 60-Second Quiz</a>
+      <a href="private-chef.html" class="assistant-option">🧑‍🍳 Book a Private Chef</a>
+      <a href="contact.html" class="assistant-option">💬 Talk to a Human</a>
+    </div>
+  </div>
+
+  <button class="assistant-toggle" id="assistant-toggle" aria-label="Open help assistant">
+    <span class="assistant-toggle-icon">💬</span>
+  </button>
+</div>
+
+<script>
+// ===== Mobile nav toggle =====
+const navToggle = document.getElementById('nav-toggle');
+const navLinks = document.getElementById('nav-links');
+navToggle.addEventListener('click', () => {
+  const isOpen = navLinks.classList.toggle('is-open');
+  navToggle.setAttribute('aria-expanded', isOpen);
+});
+
+// ===== Seating type selection =====
+let selectedSeating = null;
+const seatingOptions = document.querySelectorAll('.seating-option');
+seatingOptions.forEach(option => {
+  option.addEventListener('click', () => {
+    seatingOptions.forEach(o => o.classList.remove('is-selected'));
+    option.classList.add('is-selected');
+    selectedSeating = option.dataset.seating;
+    document.getElementById('group-seating').classList.remove('has-error');
+  });
+});
+
+// ===== Set min date to today =====
+const dateInput = document.getElementById('res-date');
+const today = new Date().toISOString().split('T')[0];
+dateInput.setAttribute('min', today);
+
+// ===== Form validation =====
+const form = document.getElementById('reservation-form');
+const fields = {
+  name: { input: document.getElementById('res-name'), group: document.getElementById('group-name') },
+  phone: { input: document.getElementById('res-phone'), group: document.getElementById('group-phone') },
+  email: { input: document.getElementById('res-email'), group: document.getElementById('group-email') },
+  date: { input: document.getElementById('res-date'), group: document.getElementById('group-date') },
+  time: { input: document.getElementById('res-time'), group: document.getElementById('group-time') },
+  guests: { input: document.getElementById('res-guests'), group: document.getElementById('group-guests') },
+};
+
+function validateField(key) {
+  const { input, group } = fields[key];
+  let isValid = true;
+
+  if (key === 'name') isValid = input.value.trim().length >= 2;
+  if (key === 'phone') isValid = /^[\d+\s-]{7,15}$/.test(input.value.trim());
+  if (key === 'email') isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim());
+  if (key === 'date') isValid = input.value !== '' && input.value >= today;
+  if (key === 'time') isValid = input.value !== '';
+  if (key === 'guests') isValid = input.value !== '';
+
+  group.classList.toggle('has-error', !isValid);
+  return isValid;
+}
+
+// Live validation as user types/selects
+Object.keys(fields).forEach(key => {
+  const eventType = fields[key].input.tagName === 'SELECT' ? 'change' : 'input';
+  fields[key].input.addEventListener(eventType, () => validateField(key));
+});
+
+// ===== Submit handler =====
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  let allValid = true;
+  Object.keys(fields).forEach(key => {
+    if (!validateField(key)) allValid = false;
+  });
+
+  if (!selectedSeating) {
+    document.getElementById('group-seating').classList.add('has-error');
+    allValid = false;
+  }
+
+  if (!allValid) {
+    const firstError = document.querySelector('.has-error');
+    if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
+  // Build summary
+  const guestsLabel = fields.guests.input.value;
+  const dateLabel = new Date(fields.date.input.value + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+
+  document.getElementById('modal-summary').innerHTML = `
+    <div><span>Name</span><strong>${fields.name.input.value}</strong></div>
+    <div><span>Date</span><strong>${dateLabel}</strong></div>
+    <div><span>Time</span><strong>${fields.time.input.value}</strong></div>
+    <div><span>Guests</span><strong>${guestsLabel}</strong></div>
+    <div><span>Seating</span><strong>${selectedSeating}</strong></div>
+  `;
+
+  document.getElementById('modal-overlay').classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+});
+
+// ===== Close modal =====
+const modalOverlay = document.getElementById('modal-overlay');
+document.getElementById('modal-close-btn').addEventListener('click', () => {
+  modalOverlay.classList.remove('is-open');
+  document.body.style.overflow = '';
+  form.reset();
+  seatingOptions.forEach(o => o.classList.remove('is-selected'));
+  selectedSeating = null;
+});
+// ===== Floating "Need Help Choosing?" Assistant =====
+const assistantToggle = document.getElementById('assistant-toggle');
+const assistantPanel = document.getElementById('assistant-panel');
+const assistantClose = document.getElementById('assistant-close');
+
+assistantToggle.addEventListener('click', () => {
+  assistantPanel.classList.toggle('is-open');
+});
+
+assistantClose.addEventListener('click', () => {
+  assistantPanel.classList.remove('is-open');
+});
+
+document.addEventListener('click', (e) => {
+  const widget = document.getElementById('assistant-widget');
+  if (!widget.contains(e.target)) {
+    assistantPanel.classList.remove('is-open');
+  }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Private Chef — Yumly Yours</title>
+<meta name="description" content="Book a verified private chef for one-time cooking, weekly meal prep, events, or corporate dining in Lagos.">
+<link rel="icon" type="image/png" href="images/favicon.png">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=Manrope:wght@400;500;600&display=swap');
+
+:root {
+  --color-red: #E63946;
+  --color-red-dark: #C6303C;
+  --color-yellow: #F4C430;
+  --color-charcoal: #1F1F1F;
+  --color-warm-white: #FDEFC4;
+  --color-cream: #FFF8F1;
+  --color-text: #1F1F1F;
+  --color-text-muted: #5C5C58;
+  --color-border: #E8E4DC;
+  --color-surface: #FFFFFF;
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Manrope', sans-serif;
+  --fs-h1: clamp(2.5rem, 5vw, 4.5rem);
+  --fs-h2: clamp(2rem, 3.5vw, 3rem);
+  --fs-h3: clamp(1.5rem, 2.5vw, 2rem);
+  --fs-body-lg: 1.125rem;
+  --fs-body: 1rem;
+  --fs-body-sm: 0.875rem;
+  --fs-caption: 0.75rem;
+  --lh-tight: 1.15; --lh-normal: 1.5; --lh-relaxed: 1.7;
+  --space-1: 8px; --space-2: 16px; --space-3: 24px; --space-4: 32px;
+  --space-5: 40px; --space-6: 48px; --space-8: 64px; --space-10: 80px;
+  --radius-sm: 8px; --radius-md: 16px; --radius-lg: 24px; --radius-full: 999px;
+  --shadow-sm: 0 2px 8px rgba(31,31,31,0.06);
+  --shadow-md: 0 8px 24px rgba(31,31,31,0.08);
+  --shadow-lg: 0 16px 48px rgba(31,31,31,0.12);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 0.2s var(--ease-out);
+  --transition-med: 0.4s var(--ease-out);
+  --max-width: 1280px;
+  --nav-height: 80px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: var(--nav-height); }
+body { font-family: var(--font-body); color: var(--color-text); background: var(--color-warm-white); -webkit-font-smoothing: antialiased; }
+img, video { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+:focus-visible { outline: 2px solid var(--color-red); outline-offset: 3px; }
+
+h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height: var(--lh-tight); color: var(--color-charcoal); }
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+h4 { font-size: 1.1rem; }
+p { line-height: var(--lh-relaxed); color: var(--color-text-muted); }
+
+.eyebrow { display: inline-block; font-family: var(--font-heading); font-size: var(--fs-caption); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-red); margin-bottom: var(--space-2); }
+.container { width: 100%; max-width: var(--max-width); margin-inline: auto; padding-inline: var(--space-3); }
+.section { padding-block: var(--space-10); }
+.section-header { margin-bottom: var(--space-6); text-align: center; }
+.section-lede { font-size: var(--fs-body-lg); max-width: 560px; margin-inline: auto; }
+.grid { display: grid; gap: var(--space-3); }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--font-heading); font-weight: 500; font-size: var(--fs-body); padding: 14px 28px; border-radius: var(--radius-full); transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast); white-space: nowrap; }
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { background: var(--color-red); color: var(--color-warm-white); box-shadow: var(--shadow-sm); }
+.btn-primary:hover { background: var(--color-red-dark); box-shadow: var(--shadow-md); }
+.btn-ghost { background: transparent; color: var(--color-charcoal); border: 1.5px solid var(--color-border); }
+.btn-ghost:hover { border-color: var(--color-charcoal); }
+.btn-sm { padding: 8px 18px; font-size: var(--fs-body-sm); }
+.btn-block { width: 100%; }
+
+.card { background: var(--color-surface); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); overflow: hidden; transition: transform var(--transition-fast), box-shadow var(--transition-fast); }
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.card-body { padding: var(--space-3); }
+
+/* Navbar */
+.navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--nav-height); display: flex; align-items: center; background: rgba(250,250,248,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-border); box-shadow: var(--shadow-sm); }
+.navbar-inner { width: 100%; max-width: var(--max-width); margin-inline: auto; padding-inline: var(--space-3); display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-family: var(--font-heading); font-weight: 600; font-size: 1.25rem; color: var(--color-charcoal); display: flex; align-items: center; gap: 8px; }
+.nav-logo img { height: 32px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: var(--space-4); }
+.nav-links a { font-size: var(--fs-body-sm); font-weight: 500; color: var(--color-text); position: relative; padding-block: 4px; }
+.nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--color-red); transition: width var(--transition-fast); }
+.nav-links a:hover::after, .nav-links a[aria-current="page"]::after { width: 100%; }
+.nav-actions { display: flex; align-items: center; gap: var(--space-2); }
+.nav-toggle { display: none; flex-direction: column; gap: 5px; padding: 8px; }
+.nav-toggle span { width: 22px; height: 2px; background: var(--color-charcoal); border-radius: 2px; transition: transform var(--transition-fast), opacity var(--transition-fast); }
+
+@media (max-width: 900px) {
+  .nav-links { position: fixed; top: var(--nav-height); left: 0; right: 0; background: var(--color-warm-white); flex-direction: column; align-items: flex-start; padding: var(--space-3); gap: var(--space-3); border-bottom: 1px solid var(--color-border); transform: translateY(-150%); transition: transform var(--transition-med); }
+  .nav-links.is-open { transform: translateY(0); }
+  .nav-toggle { display: flex; }
+}
+
+/* Footer */
+.footer { background: var(--color-charcoal); color: var(--color-warm-white); padding-block: var(--space-8) var(--space-4); margin-top: var(--space-10); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: var(--space-4); padding-bottom: var(--space-6); border-bottom: 1px solid rgba(255,255,255,0.1); }
+.footer h4 { color: var(--color-warm-white); font-size: var(--fs-body); margin-bottom: var(--space-2); }
+.footer p, .footer a { color: rgba(255,255,255,0.65); font-size: var(--fs-body-sm); }
+.footer-links li { margin-bottom: 8px; }
+.footer-links a:hover { color: var(--color-yellow); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: var(--space-3); font-size: var(--fs-caption); color: rgba(255,255,255,0.5); flex-wrap: wrap; gap: var(--space-2); }
+@media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+
+/* ==========================================================================
+   PRIVATE CHEF PAGE — SPECIFIC STYLES
+   ========================================================================== */
+.chef-hero {
+  padding-top: calc(var(--nav-height) + var(--space-8));
+  padding-bottom: var(--space-6);
+  background: var(--color-charcoal);
+  color: var(--color-warm-white);
+  text-align: center;
+}
+.chef-hero h1, .chef-hero p { color: var(--color-warm-white); }
+.chef-hero .section-lede { color: rgba(255,255,255,0.7); }
+
+/* ===== Today's Kitchen (live cooking widget) ===== */
+.kitchen-live {
+  background: var(--color-cream);
+}
+.kitchen-live-card {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 0;
+  overflow: hidden;
+  max-width: 900px;
+  margin-inline: auto;
+}
+@media (max-width: 800px) { .kitchen-live-card { grid-template-columns: 1fr; } }
+
+.kitchen-live-video-wrap {
+  position: relative;
+  background: var(--color-charcoal);
+  aspect-ratio: 4/3;
+}
+.kitchen-live-video-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.live-badge {
+  position: absolute;
+  top: 14px; left: 14px;
+  display: flex; align-items: center; gap: 6px;
+  background: rgba(230,57,70,0.95);
+  color: var(--color-warm-white);
+  font-family: var(--font-heading);
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  z-index: 2;
+}
+.live-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--color-warm-white);
+  animation: pulse-dot 1.4s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+.kitchen-live-info {
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.kitchen-live-info .eyebrow { margin-bottom: var(--space-1); }
+.kitchen-live-info h3 { margin-bottom: var(--space-2); }
+.kitchen-live-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-block: var(--space-2);
+  padding-block: var(--space-2);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+.chef-avatar-sm {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.kitchen-live-meta div p:first-child { font-weight: 600; color: var(--color-charcoal); font-size: var(--fs-body-sm); }
+.kitchen-live-meta div p:last-child { font-size: var(--fs-caption); }
+
+.ready-timer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--color-red);
+}
+
+/* ===== Chef filters ===== */
+.chef-controls {
+  position: sticky;
+  top: var(--nav-height);
+  z-index: 500;
+  background: rgba(250,250,248,0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-border);
+  padding-block: var(--space-2);
+}
+.filter-tabs { display: flex; gap: 8px; overflow-x: auto; justify-content: center; padding-bottom: 4px; scrollbar-width: none; }
+.filter-tabs::-webkit-scrollbar { display: none; }
+.filter-tab { flex-shrink: 0; padding: 8px 18px; border-radius: var(--radius-full); border: 1.5px solid var(--color-border); font-size: var(--fs-body-sm); font-weight: 500; color: var(--color-text-muted); transition: all var(--transition-fast); }
+.filter-tab:hover { border-color: var(--color-charcoal); color: var(--color-charcoal); }
+.filter-tab.is-active { background: var(--color-red); border-color: var(--color-red); color: var(--color-warm-white); }
+
+/* ===== Chef cards ===== */
+.chef-grid { grid-template-columns: repeat(3, 1fr); margin-top: var(--space-6); }
+@media (max-width: 1024px) { .chef-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .chef-grid { grid-template-columns: 1fr; } }
+
+.chef-card { position: relative; }
+.chef-card-img-wrap { position: relative; }
+.chef-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+.availability-badge {
+  position: absolute; top: 10px; left: 10px;
+  font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;
+  padding: 4px 10px; border-radius: var(--radius-full);
+  z-index: 2;
+}
+.availability-badge.available { background: #E8F5E9; color: #2E7D32; }
+.availability-badge.booked { background: #F5F5F5; color: #757575; }
+
+.chef-rating {
+  position: absolute; top: 10px; right: 10px;
+  background: rgba(255,255,255,0.95);
+  font-size: var(--fs-caption); font-weight: 600;
+  padding: 4px 10px; border-radius: var(--radius-full);
+  display: flex; align-items: center; gap: 4px;
+  z-index: 2;
+}
+
+.chef-card-body { padding: var(--space-3); }
+.chef-speciality { font-size: var(--fs-body-sm); color: var(--color-red); font-weight: 500; margin-bottom: 6px; }
+.chef-stats-row { display: flex; gap: var(--space-2); font-size: var(--fs-caption); color: var(--color-text-muted); margin-block: 8px; }
+.chef-dishes { font-size: var(--fs-caption); margin-bottom: var(--space-2); }
+.chef-price-row { display: flex; align-items: center; justify-content: space-between; }
+.chef-price { font-family: var(--font-heading); font-weight: 600; color: var(--color-charcoal); }
+
+.no-results { text-align: center; padding: var(--space-8) 0; grid-column: 1 / -1; }
+
+/* ===== Booking types ===== */
+.booking-types-grid { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 900px) { .booking-types-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .booking-types-grid { grid-template-columns: 1fr; } }
+
+.booking-type-card {
+  padding: var(--space-3);
+  text-align: center;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+}
+.booking-type-card.is-selected { border-color: var(--color-red); background: #FDF1F1; }
+.booking-type-card .icon { font-size: 1.75rem; margin-bottom: 6px; }
+.booking-type-card h4 { font-size: var(--fs-body-sm); margin-bottom: 4px; }
+.booking-type-card p { font-size: var(--fs-caption); }
+
+/* ===== Booking form ===== */
+.booking-form { padding: var(--space-4); max-width: 720px; margin-inline: auto; }
+.form-group { margin-bottom: var(--space-3); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2); }
+@media (max-width: 500px) { .form-row { grid-template-columns: 1fr; } }
+.form-group label { display: block; font-family: var(--font-heading); font-size: var(--fs-body-sm); font-weight: 500; margin-bottom: 6px; color: var(--color-charcoal); }
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%; padding: 13px 16px; border-radius: var(--radius-sm);
+  border: 1.5px solid var(--color-border); background: var(--color-warm-white);
+  font-size: var(--fs-body); transition: border-color var(--transition-fast);
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--color-red); outline: none; }
+.form-group textarea { resize: vertical; min-height: 90px; }
+.form-group.has-error input, .form-group.has-error select { border-color: var(--color-red); background: #FDF1F1; }
+.error-message { display: none; color: var(--color-red); font-size: var(--fs-caption); margin-top: 6px; }
+.form-group.has-error .error-message { display: block; }
+
+/* Modal (booking confirmation + chef quick view share the same base) */
+.modal-overlay { position: fixed; inset: 0; z-index: 2000; background: rgba(31,31,31,0.6); display: flex; align-items: center; justify-content: center; padding: var(--space-3); opacity: 0; pointer-events: none; transition: opacity var(--transition-fast); }
+.modal-overlay.is-open { opacity: 1; pointer-events: all; }
+.modal { background: var(--color-surface); border-radius: var(--radius-lg); max-width: 440px; width: 100%; padding: var(--space-5) var(--space-4); text-align: center; transform: translateY(20px) scale(0.98); transition: transform var(--transition-med); }
+.modal-overlay.is-open .modal { transform: translateY(0) scale(1); }
+.modal-icon { width: 64px; height: 64px; border-radius: 50%; background: #E8F5E9; color: #2E7D32; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin-inline: auto; margin-bottom: var(--space-3); }
+.modal-summary { text-align: left; background: var(--color-cream); border-radius: var(--radius-sm); padding: var(--space-2); margin-block: var(--space-3); font-size: var(--fs-body-sm); }
+.modal-summary div { display: flex; justify-content: space-between; padding-block: 4px; }
+.modal-summary strong { color: var(--color-charcoal); }
+/* Floating Assistant */
+.assistant-widget {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1500;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.assistant-toggle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--color-red);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s var(--ease-out);
+}
+.assistant-toggle:hover { transform: scale(1.08); }
+.assistant-toggle-icon { font-size: 1.5rem; }
+
+.assistant-panel {
+  width: 300px;
+  max-width: calc(100vw - 48px);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-3);
+  transform: translateY(12px) scale(0.96);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.25s var(--ease-out), opacity 0.25s var(--ease-out);
+}
+.assistant-panel.is-open {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.assistant-panel-header {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-bottom: var(--space-2);
+  position: relative;
+}
+.assistant-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--color-cream);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.assistant-panel-header h4 { font-size: var(--fs-body); margin-bottom: 2px; }
+.assistant-panel-header p { font-size: var(--fs-body-sm); line-height: 1.4; }
+.assistant-close {
+  position: absolute;
+  top: -4px; right: -4px;
+  width: 24px; height: 24px;
+  font-size: 16px;
+  color: var(--color-text-muted);
+}
+
+.assistant-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.assistant-option {
+  display: block;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--color-cream);
+  font-size: var(--fs-body-sm);
+  font-weight: 500;
+  color: var(--color-charcoal);
+  transition: background 0.2s var(--ease-out);
+}
+.assistant-option:hover { background: var(--color-border); }
+
+@media (max-width: 480px) {
+  .assistant-widget { bottom: 16px; right: 16px; }
+  .assistant-toggle { width: 52px; height: 52px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<header class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="images/logo.png" alt="Yumly Yours logo">
+      Yumly Yours
+    </a>
+    <nav id="nav-links" class="nav-links" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="about.html">About</a>
+      <a href="reservations.html">Reservations</a>
+      <a href="private-chef.html" aria-current="page">Private Chef</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+      <a href="Corporate-catering.html">Corporate catering</a>
+  
+     
+    </nav>
+    <div class="nav-actions">
+      <a href="menu.html" class="btn btn-primary">Order Now</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="chef-hero">
+  <div class="container">
+    <p class="eyebrow">Private Chef Booking</p>
+    <h1>Bring Restaurant-Quality Dining Home.</h1>
+    <p class="section-lede">Browse verified chefs, pick a cuisine, and book someone to cook in your own kitchen — for one night, one week, or every week.</p>
+  </div>
+</section>
+
+<!-- ===== TODAY'S KITCHEN (LIVE WIDGET) ===== -->
+<section class="section kitchen-live" style="padding-block: var(--space-6);">
+  <div class="container">
+    <div class="card kitchen-live-card">
+
+      <div class="kitchen-live-video-wrap">
+        <span class="live-badge"><span class="live-dot"></span>Live in the Kitchen</span>
+        <!-- Replace this src with your actual video file, e.g. videos/chef-ada-okra.mp4 -->
+        <video
+          id="kitchen-video"
+          poster="images/chef-ada-okra-poster.jpg"
+          autoplay
+          muted
+          loop
+          playsinline
+          aria-label="Chef Ade stirring seafood okra soup on the stove">
+          <source src="videos/chef-ada-okra.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div class="kitchen-live-info">
+        <p class="eyebrow">Currently Preparing</p>
+        <h3 id="kitchen-dish-name">🔥 Seafood Okra Soup</h3>
+        <p id="kitchen-dish-desc">Fresh okra, prawns, crab, and smoked catfish, simmered slowly and finished with palm oil and scotch bonnet.</p>
+
+        <div class="kitchen-live-meta">
+          <img src="images/chef-ada.jpg" alt="Chef Ada" class="chef-avatar-sm">
+          <div>
+            <p id="kitchen-chef-name">Chef Ade</p>
+            <p>Nigerian Cuisine Specialist</p>
+          </div>
+        </div>
+
+        <div class="ready-timer">
+          ⏱ Ready in <span id="kitchen-countdown">18</span> mins
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== CHEF FILTERS ===== -->
+<div class="chef-controls">
+  <div class="container">
+    <div class="filter-tabs" id="filter-tabs">
+      <button class="filter-tab is-active" data-cuisine="all">All</button>
+      <button class="filter-tab" data-cuisine="nigerian">Nigerian</button>
+      <button class="filter-tab" data-cuisine="continental">Continental</button>
+      <button class="filter-tab" data-cuisine="italian">Italian</button>
+      <button class="filter-tab" data-cuisine="asian">Asian</button>
+      <button class="filter-tab" data-cuisine="pastry">Pastry</button>
+      <button class="filter-tab" data-cuisine="healthy">Healthy Meals</button>
+      <button class="filter-tab" data-cuisine="family">Family Style</button>
+      <button class="filter-tab" data-cuisine="luxury">Luxury Dining</button>
+      <button class="filter-tab" data-cuisine="events">Private Events</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CHEF GRID ===== -->
+<section class="section" style="padding-top: var(--space-4);">
+  <div class="container">
+    <div class="section-header">
+      <p class="eyebrow">Verified Chefs</p>
+      <h2>Choose Your Chef</h2>
+    </div>
+    <div class="grid chef-grid" id="chef-grid"></div>
+  </div>
+</section>
+
+<!-- ===== BOOKING TYPES ===== -->
+<section class="section" style="background:var(--color-cream);">
+  <div class="container">
+    <div class="section-header">
+      <p class="eyebrow">Choose Your Booking</p>
+      <h2>How Would You Like Your Chef?</h2>
+    </div>
+    <div class="grid booking-types-grid" id="booking-types-grid">
+      <div class="booking-type-card card" data-type="One-time Cooking"><div class="icon">🍳</div><h4>One-time Cooking</h4><p>A single session</p></div>
+      <div class="booking-type-card card" data-type="Weekly Chef"><div class="icon">📅</div><h4>Weekly Chef</h4><p>Recurring weekly</p></div>
+      <div class="booking-type-card card" data-type="Monthly Chef"><div class="icon">🗓️</div><h4>Monthly Chef</h4><p>All month, planned</p></div>
+      <div class="booking-type-card card" data-type="Event Chef"><div class="icon">🎉</div><h4>Event Chef</h4><p>For your event</p></div>
+      <div class="booking-type-card card" data-type="Birthday Chef"><div class="icon">🎂</div><h4>Birthday Chef</h4><p>Celebration menu</p></div>
+      <div class="booking-type-card card" data-type="Romantic Dinner Chef"><div class="icon">🕯️</div><h4>Romantic Dinner</h4><p>Just the two of you</p></div>
+      <div class="booking-type-card card" data-type="Family Meal Prep"><div class="icon">👨‍👩‍👧‍👦</div><h4>Family Meal Prep</h4><p>Batch-cooked & stocked</p></div>
+      <div class="booking-type-card card" data-type="Corporate Chef"><div class="icon">💼</div><h4>Corporate Chef</h4><p>Office / team dining</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BOOKING FORM ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <p class="eyebrow">Final Step</p>
+      <h2>Book Your Chef</h2>
+      <p class="section-lede">Selected chef and booking type will be added automatically once chosen above.</p>
+    </div>
+
+    <form class="card booking-form" id="chef-booking-form" novalidate>
+
+      <div class="form-group" id="group-selected-chef" style="display:none;">
+        <label>Selected Chef</label>
+        <input type="text" id="selected-chef-display" disabled>
+      </div>
+
+      <div class="form-group" id="group-selected-type" style="display:none;">
+        <label>Booking Type</label>
+        <input type="text" id="selected-type-display" disabled>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group" id="group-cb-name">
+          <label for="cb-name">Full Name</label>
+          <input type="text" id="cb-name" placeholder="Your full name">
+          <p class="error-message">Please enter your name.</p>
+        </div>
+        <div class="form-group" id="group-cb-phone">
+          <label for="cb-phone">Phone Number</label>
+          <input type="tel" id="cb-phone" placeholder="080X XXX XXXX">
+          <p class="error-message">Enter a valid phone number.</p>
+        </div>
+      </div>
+
+      <div class="form-group" id="group-cb-address">
+        <label for="cb-address">Delivery / Cooking Address</label>
+        <input type="text" id="cb-address" placeholder="Full address in Lagos">
+        <p class="error-message">Please enter an address.</p>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group" id="group-cb-date">
+          <label for="cb-date">Date</label>
+          <input type="date" id="cb-date">
+          <p class="error-message">Select a valid future date.</p>
+        </div>
+        <div class="form-group" id="group-cb-time">
+          <label for="cb-time">Time</label>
+          <input type="time" id="cb-time">
+          <p class="error-message">Please select a time.</p>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group" id="group-cb-occasion">
+          <label for="cb-occasion">Occasion</label>
+          <select id="cb-occasion">
+            <option value="">Select occasion</option>
+            <option>Everyday Cooking</option>
+            <option>Birthday</option>
+            <option>Anniversary</option>
+            <option>Corporate Event</option>
+            <option>Family Gathering</option>
+            <option>Other</option>
+          </select>
+          <p class="error-message">Please select an occasion.</p>
+        </div>
+        <div class="form-group" id="group-cb-guests">
+          <label for="cb-guests">Number of Guests</label>
+          <select id="cb-guests">
+            <option value="">Select guests</option>
+            <option value="1-2">1–2</option>
+            <option value="3-5">3–5</option>
+            <option value="6-10">6–10</option>
+            <option value="10+">10+</option>
+          </select>
+          <p class="error-message">Please select guest count.</p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="cb-kitchen">Kitchen Availability</label>
+        <select id="cb-kitchen">
+          <option value="Full kitchen available">Full kitchen available</option>
+          <option value="Limited equipment">Limited equipment</option>
+          <option value="Chef should bring equipment">Chef should bring equipment</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="cb-instructions">Special Instructions (optional)</label>
+        <textarea id="cb-instructions" placeholder="Allergies, preferred dishes, dietary notes..."></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block">Book Chef</button>
+    </form>
+  </div>
+</section>
+
+<!-- ===== CONFIRMATION MODAL ===== -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <div class="modal-icon">✓</div>
+    <h3>Booking Request Sent</h3>
+    <p>We'll confirm your chef's availability and reach out within a few hours.</p>
+    <div class="modal-summary" id="modal-summary"></div>
+    <button class="btn btn-primary btn-block" id="modal-close-btn">Done</button>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>Yumly Yours</h4>
+        <p>Meals, Made For You. Premium dining, meal subscriptions, and private chefs — Victoria Island, Lagos.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul class="footer-links">
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="private-chef.html">Private Chef</a></li>
+          <li><a href="reservations.html">Reservations</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul class="footer-links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="corporate-catering.html">Corporate Catering</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li>Victoria Island, Lagos</li>
+          <li><a href="tel:+2340000000000">+234 913 0255 872</a></li>
+          <li><a href="mailto:hello@yumlyyours.com">hello@yumlyyours.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Yumly Yours. All rights reserved.</p>
+      <p>Privacy Policy · Terms of Service</p>
+    </div>
+  </div>
+</footer>
+<!-- ===== FLOATING ASSISTANT ===== -->
+<div class="assistant-widget" id="assistant-widget">
+  <div class="assistant-panel" id="assistant-panel">
+    <div class="assistant-panel-header">
+      <div class="assistant-avatar">👋</div>
+      <div>
+        <h4>Hi there!</h4>
+        <p>Need meals for the week? I can help you choose in under a minute.</p>
+      </div>
+      <button class="assistant-close" id="assistant-close" aria-label="Close">&times;</button>
+    </div>
+
+    <div class="assistant-options">
+      <a href="menu.html" class="assistant-option">🍽️ Browse the Menu</a>
+      <a href="index.html#quiz-open-btn" class="assistant-option" id="assistant-quiz-link">🎯 Take the 60-Second Quiz</a>
+      <a href="private-chef.html" class="assistant-option">🧑‍🍳 Book a Private Chef</a>
+      <a href="contact.html" class="assistant-option">💬 Talk to a Human</a>
+    </div>
+  </div>
+
+  <button class="assistant-toggle" id="assistant-toggle" aria-label="Open help assistant">
+    <span class="assistant-toggle-icon">💬</span>
+  </button>
+</div>
+<script>
+// ===== Mobile nav toggle =====
+const navToggle = document.getElementById('nav-toggle');
+const navLinks = document.getElementById('nav-links');
+navToggle.addEventListener('click', () => {
+  const isOpen = navLinks.classList.toggle('is-open');
+  navToggle.setAttribute('aria-expanded', isOpen);
+});
+
+// ===== Today's Kitchen: simulated countdown =====
+// Ticks the "ready in X mins" number down every 20 seconds for a live feel.
+// Replace this whole block later with a real backend feed if needed.
+let minsLeft = 18;
+const countdownEl = document.getElementById('kitchen-countdown');
+setInterval(() => {
+  if (minsLeft > 1) {
+    minsLeft--;
+    countdownEl.textContent = minsLeft;
+  }
+}, 20000);
+
+// ===== Chef data (swap images/details with your real chefs) =====
+const chefs = [
+  { id: 1, name: 'Chef Ade Bello', cuisine: 'nigerian', speciality: 'Nigerian Cuisine Specialist', years: 8, languages: 'English, Yoruba', rating: 4.9, bookings: 210, available: true, price: '₦85,000 – ₦220,000', dishes: 'Seafood Okra, Ofada Rice, Pepper Soup', img: 'images/chef-ada.jpg' },
+  { id: 2, name: 'Chef Marco Rossi', cuisine: 'italian', speciality: 'Italian Fine Dining', years: 12, languages: 'English, Italian', rating: 4.8, bookings: 165, available: true, price: '₦350,000 – ₦850,000', dishes: 'Handmade Pasta, Risotto, Tiramisu', img: 'images/chef-marco.jpg' },
+  { id: 3, name: 'Chef Bayo Adekunle', cuisine: 'continental', speciality: 'Modern Continental', years: 6, languages: 'English', rating: 4.7, bookings: 132, available: false, price: '₦140,000 – ₦500,000', dishes: 'Grilled Salmon, Beef Wellington', img: 'images/chef-bayo.jpg' },
+  { id: 4, name: 'Chef Mei Lin', cuisine: 'asian', speciality: 'Pan-Asian Cuisine', years: 9, languages: 'English, Mandarin', rating: 4.9, bookings: 188, available: true, price: '₦450,000 – ₦840,000', dishes: 'Dim Sum, Ramen, Sushi Platters', img: 'images/chef-mei.jpg' },
+  { id: 5, name: 'Chef Ifeoma Chukwu', cuisine: 'healthy', speciality: 'Healthy & Balanced Meals', years: 5, languages: 'English, Igbo', rating: 4.8, bookings: 97, available: true, price: '₦135,000 – ₦290,000', dishes: 'Quinoa Bowls, Grilled Fish, Smoothies', img: 'images/chef-ifeoma.jpg' },
+  { id: 6, name: 'Chef Ese Fernandez', cuisine: 'pastry', speciality: 'Pastry & Desserts', years: 7, languages: 'English, Delta', rating: 4.9, bookings: 143, available: true, price: '₦130,000 – ₦285,000', dishes: 'Custom Cakes, Croissants, Tarts', img: 'images/chef-ese.jpg' },
+  { id: 7, name: 'Chef Hilda', cuisine: 'family', speciality: 'Family Style Cooking', years: 10, languages: 'English, Yoruba', rating: 4.7, bookings: 176, available: true, price: '₦235,000 – ₦895,000', dishes: 'Rice Dishes, Stews, Batch Meal Prep', img: 'images/chef-hilda.jpg' },
+  { id: 8, name: 'Chef Chi', cuisine: 'luxury', speciality: 'Luxury Tasting Menus', years: 14, languages: 'English, French', rating: 5.0, bookings: 89, available: true, price: '₦900,000+', dishes: 'Multi-Course Tasting Menu', img: 'images/chef-chi.jpg' },
+  { id: 9, name: 'Chef Gozie Okonkwo', cuisine: 'events', speciality: 'Private Events & Large Groups', years: 11, languages: 'English', rating: 4.8, bookings: 154, available: false, price: '₦500,000+', dishes: 'Buffet Spreads, Live Cooking Stations', img: 'images/chef-gozie.jpg' },
+];
+
+let activeCuisine = 'all';
+const chefGrid = document.getElementById('chef-grid');
+const filterTabs = document.getElementById('filter-tabs');
+
+function renderChefs() {
+  const filtered = activeCuisine === 'all' ? chefs : chefs.filter(c => c.cuisine === activeCuisine);
+
+  if (filtered.length === 0) {
+    chefGrid.innerHTML = `<div class="no-results"><h4>No chefs in this category yet</h4></div>`;
+    return;
+  }
+
+  chefGrid.innerHTML = filtered.map(chef => `
+    <div class="card chef-card" data-id="${chef.id}">
+      <div class="chef-card-img-wrap">
+        <span class="availability-badge ${chef.available ? 'available' : 'booked'}">${chef.available ? 'Available Today' : 'Fully Booked'}</span>
+        <span class="chef-rating">⭐ ${chef.rating}</span>
+        <img src="${chef.img}" alt="${chef.name}" loading="lazy">
+      </div>
+      <div class="chef-card-body">
+        <h4>${chef.name}</h4>
+        <p class="chef-speciality">${chef.speciality}</p>
+        <div class="chef-stats-row">
+          <span>${chef.years} yrs experience</span>
+          <span>·</span>
+          <span>${chef.bookings} bookings</span>
+        </div>
+        <p class="chef-dishes"><strong>Signature:</strong> ${chef.dishes}</p>
+        <div class="chef-price-row">
+          <span class="chef-price">${chef.price}</span>
+          <button class="btn btn-primary btn-sm" data-select-chef="${chef.id}">Book Chef</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+renderChefs();
+
+filterTabs.addEventListener('click', (e) => {
+  const tab = e.target.closest('.filter-tab');
+  if (!tab) return;
+  filterTabs.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('is-active'));
+  tab.classList.add('is-active');
+  activeCuisine = tab.dataset.cuisine;
+  renderChefs();
+});
+
+// ===== Chef selection -> reflected in booking form =====
+const selectedChefGroup = document.getElementById('group-selected-chef');
+const selectedChefDisplay = document.getElementById('selected-chef-display');
+let selectedChefName = null;
+
+chefGrid.addEventListener('click', (e) => {
+  const btn = e.target.closest('[data-select-chef]');
+  if (!btn) return;
+  const chef = chefs.find(c => c.id === parseInt(btn.dataset.selectChef, 10));
+  selectedChefName = chef.name;
+  selectedChefDisplay.value = chef.name;
+  selectedChefGroup.style.display = 'block';
+  document.getElementById('chef-booking-form').scrollIntoView({ behavior: 'smooth', block: 'center' });
+});
+
+// ===== Booking type selection =====
+const bookingTypeCards = document.querySelectorAll('.booking-type-card');
+const selectedTypeGroup = document.getElementById('group-selected-type');
+const selectedTypeDisplay = document.getElementById('selected-type-display');
+let selectedBookingType = null;
+
+bookingTypeCards.forEach(card => {
+  card.addEventListener('click', () => {
+    bookingTypeCards.forEach(c => c.classList.remove('is-selected'));
+    card.classList.add('is-selected');
+    selectedBookingType = card.dataset.type;
+    selectedTypeDisplay.value = selectedBookingType;
+    selectedTypeGroup.style.display = 'block';
+  });
+});
+
+// ===== Booking form validation =====
+const bookingForm = document.getElementById('chef-booking-form');
+const cbFields = {
+  name: { input: document.getElementById('cb-name'), group: document.getElementById('group-cb-name') },
+  phone: { input: document.getElementById('cb-phone'), group: document.getElementById('group-cb-phone') },
+  address: { input: document.getElementById('cb-address'), group: document.getElementById('group-cb-address') },
+  date: { input: document.getElementById('cb-date'), group: document.getElementById('group-cb-date') },
+  time: { input: document.getElementById('cb-time'), group: document.getElementById('group-cb-time') },
+  occasion: { input: document.getElementById('cb-occasion'), group: document.getElementById('group-cb-occasion') },
+  guests: { input: document.getElementById('cb-guests'), group: document.getElementById('group-cb-guests') },
+};
+
+const cbToday = new Date().toISOString().split('T')[0];
+cbFields.date.input.setAttribute('min', cbToday);
+
+function validateCbField(key) {
+  const { input, group } = cbFields[key];
+  let isValid = true;
+  if (key === 'name') isValid = input.value.trim().length >= 2;
+  if (key === 'phone') isValid = /^[\d+\s-]{7,15}$/.test(input.value.trim());
+  if (key === 'address') isValid = input.value.trim().length >= 5;
+  if (key === 'date') isValid = input.value !== '' && input.value >= cbToday;
+  if (key === 'time') isValid = input.value !== '';
+  if (key === 'occasion') isValid = input.value !== '';
+  if (key === 'guests') isValid = input.value !== '';
+  group.classList.toggle('has-error', !isValid);
+  return isValid;
+}
+
+Object.keys(cbFields).forEach(key => {
+  const eventType = cbFields[key].input.tagName === 'SELECT' ? 'change' : 'input';
+  cbFields[key].input.addEventListener(eventType, () => validateCbField(key));
+});
+
+bookingForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  let allValid = true;
+  Object.keys(cbFields).forEach(key => { if (!validateCbField(key)) allValid = false; });
+
+  if (!allValid) {
+    const firstError = document.querySelector('.has-error');
+    if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
+  const dateLabel = new Date(cbFields.date.input.value + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+
+  document.getElementById('modal-summary').innerHTML = `
+    <div><span>Chef</span><strong>${selectedChefName || 'Not selected'}</strong></div>
+    <div><span>Booking Type</span><strong>${selectedBookingType || 'Not selected'}</strong></div>
+    <div><span>Date</span><strong>${dateLabel}</strong></div>
+    <div><span>Time</span><strong>${cbFields.time.input.value}</strong></div>
+    <div><span>Occasion</span><strong>${cbFields.occasion.input.value}</strong></div>
+    <div><span>Guests</span><strong>${cbFields.guests.input.value}</strong></div>
+  `;
+
+  document.getElementById('modal-overlay').classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+});
+
+document.getElementById('modal-close-btn').addEventListener('click', () => {
+  document.getElementById('modal-overlay').classList.remove('is-open');
+  document.body.style.overflow = '';
+  bookingForm.reset();
+  selectedChefGroup.style.display = 'none';
+  selectedTypeGroup.style.display = 'none';
+  bookingTypeCards.forEach(c => c.classList.remove('is-selected'));
+  selectedChefName = null;
+  selectedBookingType = null;
+});
+// ===== Floating "Need Help Choosing?" Assistant =====
+const assistantToggle = document.getElementById('assistant-toggle');
+const assistantPanel = document.getElementById('assistant-panel');
+const assistantClose = document.getElementById('assistant-close');
+
+assistantToggle.addEventListener('click', () => {
+  assistantPanel.classList.toggle('is-open');
+});
+
+assistantClose.addEventListener('click', () => {
+  assistantPanel.classList.remove('is-open');
+});
+
+document.addEventListener('click', (e) => {
+  const widget = document.getElementById('assistant-widget');
+  if (!widget.contains(e.target)) {
+    assistantPanel.classList.remove('is-open');
+  }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — Yumly Yours</title>
+<meta name="description" content="Learn about Yumly Yours — our story, mission, chefs, food quality standards, and commitment to sustainability in Lagos.">
+<link rel="icon" type="image/png" href="images/favicon.png">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=Manrope:wght@400;500;600&display=swap');
+
+:root {
+  --color-red: #E63946;
+  --color-red-dark: #C6303C;
+  --color-yellow: #F4C430;
+  --color-charcoal: #1F1F1F;
+  --color-warm-white: #FDEFC4;
+  --color-cream: #FFF8F1;
+  --color-text: #1F1F1F;
+  --color-text-muted: #5C5C58;
+  --color-border: #E8E4DC;
+  --color-surface: #FFFFFF;
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Manrope', sans-serif;
+  --fs-h1: clamp(2.5rem, 5vw, 4.5rem);
+  --fs-h2: clamp(2rem, 3.5vw, 3rem);
+  --fs-h3: clamp(1.5rem, 2.5vw, 2rem);
+  --fs-body-lg: 1.125rem;
+  --fs-body: 1rem;
+  --fs-body-sm: 0.875rem;
+  --fs-caption: 0.75rem;
+  --lh-tight: 1.15; --lh-normal: 1.5; --lh-relaxed: 1.7;
+  --space-1: 8px; --space-2: 16px; --space-3: 24px; --space-4: 32px;
+  --space-5: 40px; --space-6: 48px; --space-8: 64px; --space-10: 80px;
+  --radius-sm: 8px; --radius-md: 16px; --radius-lg: 24px; --radius-full: 999px;
+  --shadow-sm: 0 2px 8px rgba(31,31,31,0.06);
+  --shadow-md: 0 8px 24px rgba(31,31,31,0.08);
+  --shadow-lg: 0 16px 48px rgba(31,31,31,0.12);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 0.2s var(--ease-out);
+  --transition-med: 0.4s var(--ease-out);
+  --max-width: 1280px;
+  --nav-height: 80px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: var(--nav-height); }
+body { font-family: var(--font-body); color: var(--color-text); background: var(--color-warm-white); -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+:focus-visible { outline: 2px solid var(--color-red); outline-offset: 3px; }
+
+h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height: var(--lh-tight); color: var(--color-charcoal); }
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+p { line-height: var(--lh-relaxed); color: var(--color-text-muted); }
+
+.eyebrow { display: inline-block; font-family: var(--font-heading); font-size: var(--fs-caption); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-red); margin-bottom: var(--space-2); }
+.container { width: 100%; max-width: var(--max-width); margin-inline: auto; padding-inline: var(--space-3); }
+.section { padding-block: var(--space-10); }
+.section-header { margin-bottom: var(--space-6); text-align: center; }
+.section-lede { font-size: var(--fs-body-lg); max-width: 560px; margin-inline: auto; }
+.grid { display: grid; gap: var(--space-3); }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--font-heading); font-weight: 500; font-size: var(--fs-body); padding: 14px 28px; border-radius: var(--radius-full); transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast); white-space: nowrap; }
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { background: var(--color-red); color: var(--color-warm-white); box-shadow: var(--shadow-sm); }
+.btn-primary:hover { background: var(--color-red-dark); box-shadow: var(--shadow-md); }
+.btn-ghost { background: transparent; color: var(--color-charcoal); border: 1.5px solid var(--color-border); }
+.btn-ghost:hover { border-color: var(--color-charcoal); }
+
+.card { background: var(--color-surface); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); overflow: hidden; transition: transform var(--transition-fast), box-shadow var(--transition-fast); }
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.card-body { padding: var(--space-3); }
+
+/* Navbar */
+.navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--nav-height); display: flex; align-items: center; background: rgba(250,250,248,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-border); box-shadow: var(--shadow-sm); }
+.navbar-inner { width: 100%; max-width: var(--max-width); margin-inline: auto; padding-inline: var(--space-3); display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-family: var(--font-heading); font-weight: 600; font-size: 1.25rem; color: var(--color-charcoal); display: flex; align-items: center; gap: 8px; }
+.nav-logo img { height: 32px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: var(--space-4); }
+.nav-links a { font-size: var(--fs-body-sm); font-weight: 500; color: var(--color-text); position: relative; padding-block: 4px; }
+.nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--color-red); transition: width var(--transition-fast); }
+.nav-links a:hover::after, .nav-links a[aria-current="page"]::after { width: 100%; }
+.nav-actions { display: flex; align-items: center; gap: var(--space-2); }
+.nav-toggle { display: none; flex-direction: column; gap: 5px; padding: 8px; }
+.nav-toggle span { width: 22px; height: 2px; background: var(--color-charcoal); border-radius: 2px; transition: transform var(--transition-fast), opacity var(--transition-fast); }
+
+@media (max-width: 900px) {
+  .nav-links { position: fixed; top: var(--nav-height); left: 0; right: 0; background: var(--color-warm-white); flex-direction: column; align-items: flex-start; padding: var(--space-3); gap: var(--space-3); border-bottom: 1px solid var(--color-border); transform: translateY(-150%); transition: transform var(--transition-med); }
+  .nav-links.is-open { transform: translateY(0); }
+  .nav-toggle { display: flex; }
+}
+
+/* Footer */
+.footer { background: var(--color-charcoal); color: var(--color-warm-white); padding-block: var(--space-8) var(--space-4); margin-top: var(--space-10); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: var(--space-4); padding-bottom: var(--space-6); border-bottom: 1px solid rgba(255,255,255,0.1); }
+.footer h4 { color: var(--color-warm-white); font-size: var(--fs-body); margin-bottom: var(--space-2); }
+.footer p, .footer a { color: rgba(255,255,255,0.65); font-size: var(--fs-body-sm); }
+.footer-links li { margin-bottom: 8px; }
+.footer-links a:hover { color: var(--color-yellow); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: var(--space-3); font-size: var(--fs-caption); color: rgba(255,255,255,0.5); flex-wrap: wrap; gap: var(--space-2); }
+@media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+
+/* ==========================================================================
+   ABOUT PAGE — SPECIFIC STYLES
+   ========================================================================== */
+.about-hero {
+  padding-top: calc(var(--nav-height) + var(--space-8));
+  padding-bottom: var(--space-8);
+  background: var(--color-charcoal);
+  color: var(--color-warm-white);
+  text-align: center;
+}
+.about-hero h1, .about-hero p { color: var(--color-warm-white); }
+.about-hero .section-lede { color: rgba(255,255,255,0.7); }
+
+.story-split { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); align-items: center; }
+.story-split img { border-radius: var(--radius-lg); width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+@media (max-width: 900px) { .story-split { grid-template-columns: 1fr; } }
+
+.mission-vision-grid { grid-template-columns: 1fr 1fr; }
+.mission-vision-card { padding: var(--space-4); }
+.mission-vision-card .icon-badge { width: 48px; height: 48px; border-radius: var(--radius-sm); background: var(--color-cream); display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-2); font-size: 1.5rem; }
+@media (max-width: 700px) { .mission-vision-grid { grid-template-columns: 1fr; } }
+
+.team-grid { grid-template-columns: repeat(4, 1fr); }
+.team-card { text-align: center; padding-bottom: var(--space-3); }
+.team-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
+.team-card h4 { margin-top: var(--space-2); }
+.team-role { font-size: var(--fs-body-sm); color: var(--color-red); font-weight: 500; }
+@media (max-width: 900px) { .team-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .team-grid { grid-template-columns: 1fr; } }
+
+.kitchen-split { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+.kitchen-split img { border-radius: var(--radius-md); width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+@media (max-width: 700px) { .kitchen-split { grid-template-columns: 1fr; } }
+
+.standards-list { display: flex; flex-direction: column; gap: var(--space-2); max-width: 640px; margin-inline: auto; }
+.standard-item { display: flex; gap: var(--space-2); align-items: flex-start; padding: var(--space-2); background: var(--color-surface); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); }
+.standard-item .icon-badge { flex-shrink: 0; width: 40px; height: 40px; border-radius: var(--radius-sm); background: var(--color-cream); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; }
+
+.awards-strip { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-4); }
+.award-badge { text-align: center; }
+.award-badge img { width: 64px; height: 64px; object-fit: contain; margin-inline: auto; }
+.award-badge p { font-size: var(--fs-caption); margin-top: 8px; }
+/* Floating Assistant */
+.assistant-widget {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1500;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.assistant-toggle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--color-red);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s var(--ease-out);
+}
+.assistant-toggle:hover { transform: scale(1.08); }
+.assistant-toggle-icon { font-size: 1.5rem; }
+
+.assistant-panel {
+  width: 300px;
+  max-width: calc(100vw - 48px);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-3);
+  transform: translateY(12px) scale(0.96);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.25s var(--ease-out), opacity 0.25s var(--ease-out);
+}
+.assistant-panel.is-open {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.assistant-panel-header {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-bottom: var(--space-2);
+  position: relative;
+}
+.assistant-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--color-cream);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.assistant-panel-header h4 { font-size: var(--fs-body); margin-bottom: 2px; }
+.assistant-panel-header p { font-size: var(--fs-body-sm); line-height: 1.4; }
+.assistant-close {
+  position: absolute;
+  top: -4px; right: -4px;
+  width: 24px; height: 24px;
+  font-size: 16px;
+  color: var(--color-text-muted);
+}
+
+.assistant-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.assistant-option {
+  display: block;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--color-cream);
+  font-size: var(--fs-body-sm);
+  font-weight: 500;
+  color: var(--color-charcoal);
+  transition: background 0.2s var(--ease-out);
+}
+.assistant-option:hover { background: var(--color-border); }
+
+@media (max-width: 480px) {
+  .assistant-widget { bottom: 16px; right: 16px; }
+  .assistant-toggle { width: 52px; height: 52px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<header class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="images/logo.png" alt="Yumly Yours logo">
+      Yumly Yours
+    </a>
+    <nav id="nav-links" class="nav-links" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="about.html" aria-current="page">About</a>
+      <a href="reservations.html">Reservations</a>
+      <a href="private-chef.html">Private Chef</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+      <a href="corporate-catering.html">Corporate catering</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="menu.html" class="btn btn-primary">Order Now</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== ABOUT HERO ===== -->
+<section class="about-hero">
+  <div class="container">
+    <p class="eyebrow">Our Story</p>
+    <h1>Food, Made With Intention</h1>
+    <p class="section-lede">Yumly Yours started with a simple question: why should eating well cost you your time? Here's how we're answering it.</p>
+  </div>
+</section>
+
+<!-- ===== OUR STORY ===== -->
+<section class="section">
+  <div class="container story-split">
+    <img src="images/about-kitchen.jpg" alt="Yumly Yours kitchen team preparing meals">
+    <div>
+      <p class="eyebrow">How We Started</p>
+      <h2>Built for people with no time to waste</h2>
+      <p>Yumly Yours began in Victoria Island with one goal: give busy Lagosians restaurant-quality meals without the hours spent shopping, prepping, and cooking. What started as a small delivery kitchen has grown into a full dining ecosystem — restaurant, subscriptions, private chefs, and corporate catering, all from one trusted kitchen.</p>
+      <br>
+      <p>Every dish still goes through the same standard our first customers tasted: fresh ingredients, real Nigerian and continental flavor, and food that's ready exactly when you need it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MISSION & VISION ===== -->
+<section class="section" style="background:var(--color-cream);">
+  <div class="container">
+    <div class="grid mission-vision-grid">
+      <div class="card mission-vision-card">
+        <div class="icon-badge">🎯</div>
+        <h3>Our Mission</h3>
+        <p>To give busy professionals, families, and teams back their time — without asking them to compromise on the quality of what they eat.</p>
+      </div>
+      <div class="card mission-vision-card">
+        <div class="icon-badge">🌍</div>
+        <h3>Our Vision</h3>
+        <p>To become West Africa's most trusted name in premium meal solutions — from the family dinner table to the boardroom.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MEET THE TEAM ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <p class="eyebrow">The People Behind Yumly Yours</p>
+      <h2>Meet the Team</h2>
+    </div>
+    <div class="grid team-grid">
+      <div class="card team-card">
+        <img src="images/team-1.jpg" alt="Founder and Head Chef">
+        <div class="card-body">
+          <h4>Chef Chi</h4>
+          <p class="team-role">Founder & Head Chef</p>
+        </div>
+      </div>
+      <div class="card team-card">
+        <img src="images/team-2.jpg" alt="Operations Director">
+        <div class="card-body">
+          <h4>Pedro shonibare</h4>
+          <p class="team-role">Operations Director</p>
+        </div>
+      </div>
+      <div class="card team-card">
+        <img src="images/team-3.jpg" alt="Head of Corporate Partnerships">
+        <div class="card-body">
+          <h4>Patience Jerome</h4>
+          <p class="team-role">Corporate Partnerships</p>
+        </div>
+      </div>
+      <div class="card team-card">
+        <img src="images/team-4.jpg" alt="Executive Sous Chef">
+        <div class="card-body">
+          <h4>Chef Gozie</h4>
+          <p class="team-role">Executive Sous Chef</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== OUR KITCHEN / CHEFS ===== -->
+<section class="section" style="background:var(--color-cream);">
+  <div class="container">
+    <div class="section-header">
+      <p class="eyebrow">Where It Happens</p>
+      <h2>Our Kitchen</h2>
+      <p class="section-lede">A commercial kitchen built for consistency — every dish, every day, prepared the same way.</p>
+    </div>
+    <div class="kitchen-split">
+      <img src="images/kitchen-1.jpg" alt="Chefs preparing meals in the Yumly Yours kitchen">
+      <img src="images/kitchen-2.jpg" alt="Fresh ingredients being plated">
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOD QUALITY STANDARDS ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <p class="eyebrow">Our Promise</p>
+      <h2>Food Quality Standards</h2>
+    </div>
+    <div class="standards-list">
+      <div class="standard-item">
+        <div class="icon-badge">🥬</div>
+        <div><h4>Fresh, sourced daily</h4><p>No meal sits in cold storage for more than 24 hours before it's prepared.</p></div>
+      </div>
+      <div class="standard-item">
+        <div class="icon-badge">🧪</div>
+        <div><h4>Hygiene-certified kitchen</h4><p>Our kitchen follows strict food safety protocols, inspected regularly.</p></div>
+      </div>
+      <div class="standard-item">
+        <div class="icon-badge">⚖️</div>
+        <div><h4>Portion-accurate</h4><p>Every calorie and gram listed on our menu is what's actually on your plate.</p></div>
+      </div>
+      <div class="standard-item">
+        <div class="icon-badge">🌱</div>
+        <div><h4>Locally sourced where possible</h4><p>We partner with local Lagos farmers and suppliers to keep ingredients fresh.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SUSTAINABILITY & CSR ===== -->
+<section class="section" style="background:var(--color-cream);">
+  <div class="container story-split">
+    <div>
+      <p class="eyebrow">Beyond the Plate</p>
+      <h2>Sustainability & Community</h2>
+      <p>We use biodegradable packaging across all deliveries, partner with local farms to reduce our supply chain footprint, and donate surplus meals to community shelters across Lagos every week through our Yumly Gives Back program.</p>
+    </div>
+    <img src="images/sustainability.jpg" alt="Biodegradable food packaging">
+  </div>
+</section>
+
+<!-- ===== AWARDS ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <p class="eyebrow">Recognition</p>
+      <h2>Awards & Milestones</h2>
+    </div>
+    <div class="awards-strip">
+      <div class="award-badge">
+        <img src="images/award-1.png" alt="Best New Restaurant Lagos award">
+        <p>Best New Restaurant<br>Lagos, 2024</p>
+      </div>
+      <div class="award-badge">
+        <img src="images/award-2.png" alt="Top Meal Subscription Service award">
+        <p>Top Meal Subscription<br>Service, 2025</p>
+      </div>
+      <div class="award-badge">
+        <img src="images/award-3.png" alt="Excellence in Corporate Catering award">
+        <p>Excellence in Corporate<br>Catering, 2025</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>Yumly Yours</h4>
+        <p>Meals, Made For You. Premium dining, meal subscriptions, and private chefs — Victoria Island, Lagos.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul class="footer-links">
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="private-chef.html">Private Chef</a></li>
+          <li><a href="reservations.html">Reservations</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul class="footer-links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="corporate-catering.html">Corporate Catering</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li>Victoria Island, Lagos</li>
+          <li><a href="tel:+2340000000000">+234 913 0255 872</a></li>
+          <li><a href="mailto:hello@yumlyyours.com">hello@yumlyyours.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Yumly Yours. All rights reserved.</p>
+      <p>Privacy Policy · Terms of Service</p>
+    </div>
+  </div>
+</footer>
+<!-- ===== FLOATING ASSISTANT ===== -->
+<div class="assistant-widget" id="assistant-widget">
+  <div class="assistant-panel" id="assistant-panel">
+    <div class="assistant-panel-header">
+      <div class="assistant-avatar">👋</div>
+      <div>
+        <h4>Hi there!</h4>
+        <p>Need meals for the week? I can help you choose in under a minute.</p>
+      </div>
+      <button class="assistant-close" id="assistant-close" aria-label="Close">&times;</button>
+    </div>
+
+    <div class="assistant-options">
+      <a href="menu.html" class="assistant-option">🍽️ Browse the Menu</a>
+      <a href="index.html#quiz-open-btn" class="assistant-option" id="assistant-quiz-link">🎯 Take the 60-Second Quiz</a>
+      <a href="private-chef.html" class="assistant-option">🧑‍🍳 Book a Private Chef</a>
+      <a href="contact.html" class="assistant-option">💬 Talk to a Human</a>
+    </div>
+  </div>
+
+  <button class="assistant-toggle" id="assistant-toggle" aria-label="Open help assistant">
+    <span class="assistant-toggle-icon">💬</span>
+  </button>
+</div>
+
+<script>
+const navToggle = document.getElementById('nav-toggle');
+const navLinks = document.getElementById('nav-links');
+navToggle.addEventListener('click', () => {
+  const isOpen = navLinks.classList.toggle('is-open');
+  navToggle.setAttribute('aria-expanded', isOpen);
+});
+// ===== Floating "Need Help Choosing?" Assistant =====
+const assistantToggle = document.getElementById('assistant-toggle');
+const assistantPanel = document.getElementById('assistant-panel');
+const assistantClose = document.getElementById('assistant-close');
+
+assistantToggle.addEventListener('click', () => {
+  assistantPanel.classList.toggle('is-open');
+});
+
+assistantClose.addEventListener('click', () => {
+  assistantPanel.classList.remove('is-open');
+});
+
+document.addEventListener('click', (e) => {
+  const widget = document.getElementById('assistant-widget');
+  if (!widget.contains(e.target)) {
+    assistantPanel.classList.remove('is-open');
+  }
+});
+</script>
+
+</body>
+</html>
